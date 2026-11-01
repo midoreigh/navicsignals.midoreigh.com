@@ -346,12 +346,12 @@ export const HowPhonesCombineGnss: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* Visual Canyon Illustration - Responsive Full SVG Ray-Tracer */}
-            <div className="lg:col-span-7 bg-[#02050f] rounded-2xl p-2 sm:p-4 border border-slate-800 relative overflow-hidden flex flex-col items-center">
+            <div className="lg:col-span-7 bg-[#02050f] rounded-2xl p-2.5 sm:p-4 border border-slate-800 relative overflow-hidden flex flex-col justify-between h-full">
               
               {/* Header Status Bar above Canyon Canvas */}
-              <div className="w-full flex items-center justify-between pb-2 mb-2 px-1 border-b border-slate-800/80 text-[11px] font-mono">
+              <div className="w-full flex items-center justify-between pb-2 mb-1 px-1 border-b border-slate-800/80 text-[11px] font-mono shrink-0">
                 <span className="text-slate-300 font-bold flex items-center gap-1.5">
                   <Building2 className="w-3.5 h-3.5 text-orange-400" />
                   <span>Urban Canyon Ray Tracing (2.5D Elevation Physics)</span>
@@ -370,10 +370,11 @@ export const HowPhonesCombineGnss: React.FC = () => {
               </div>
 
               {/* The Interactive SVG Ray-Tracing Canvas */}
-              <svg 
-                viewBox="0 0 600 370" 
-                className="w-full h-auto max-h-[400px] select-none"
-              >
+              <div className="w-full flex-1 flex items-center justify-center min-h-0 py-1">
+                <svg 
+                  viewBox="0 0 600 370" 
+                  className="w-full h-full max-h-[460px] select-none"
+                >
                 <defs>
                   {/* Sky Gradient */}
                   <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -821,9 +822,10 @@ export const HowPhonesCombineGnss: React.FC = () => {
                   </g>
                 </g>
               </svg>
+              </div>
 
               {/* Status Banner directly below illustration */}
-              <div className="w-full mt-2 p-2 rounded-xl text-[10px] sm:text-xs flex items-center justify-between font-mono border">
+              <div className="w-full mt-2 p-2 rounded-xl text-[10px] sm:text-xs flex items-center justify-between font-mono border shrink-0">
                 {enableNavicInSimulation ? (
                   <div className="flex items-center gap-2 text-emerald-300 bg-emerald-950/40 border-emerald-500/30 p-1.5 rounded-lg w-full">
                     <span className="text-sm">🇮🇳</span>
@@ -844,7 +846,7 @@ export const HowPhonesCombineGnss: React.FC = () => {
             </div>
 
             {/* Controls & Real-time Comparison Metrics */}
-            <div className="lg:col-span-5 space-y-4">
+            <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-4">
               {/* Canyon Height Controller */}
               <div className="rounded-2xl p-4 sm:p-5 bg-slate-900/60 border border-slate-800 relative overflow-hidden">
                 {/* Controller Header & Digital Readout */}
