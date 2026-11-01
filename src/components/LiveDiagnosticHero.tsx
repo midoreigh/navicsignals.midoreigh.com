@@ -5,7 +5,8 @@ import {
   Compass, 
   Radio
 } from 'lucide-react';
-import { INDIA_OFFICIAL_PATH, WORLD_LAND_PATH } from '../data/earthGlobePaths';
+import { WORLD_LAND_PATH } from '../data/earthGlobePaths';
+import { INDIA_STATES } from '../data/indiaMapPaths';
 
 interface LiveDiagnosticHeroProps {
   onCheckPhone: () => void;
@@ -45,6 +46,11 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
   const tiltRad = -32 * (Math.PI / 180);
   const cosTilt = Math.cos(tiltRad);
   const sinTilt = Math.sin(tiltRad);
+
+  // Authentic Survey of India Map Scale & Alignment on Hero Globe
+  const indiaScale = 0.265;
+  const indiaTx = cx - 275 * indiaScale;
+  const indiaTy = 235 - 340 * indiaScale;
 
   // Calculate GPS satellite position along the inclined ellipse
   const alpha = 2 * Math.PI * orbitProgress;
@@ -280,32 +286,37 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 <path d={WORLD_LAND_PATH} fill="#111c2e" stroke="#1e293b" strokeWidth="0.7" opacity="0.75" />
 
                 {/* 5. Surrounding Water Bodies */}
-                <text x="175" y="275" fill="#334155" fontSize="8" fontFamily="monospace" fontWeight="bold" letterSpacing="1">
+                <text x="155" y="270" fill="#334155" fontSize="8" fontFamily="monospace" fontWeight="bold" letterSpacing="1">
                   ARABIAN SEA
                 </text>
-                <text x="330" y="275" fill="#334155" fontSize="8" fontFamily="monospace" fontWeight="bold" letterSpacing="1">
+                <text x="365" y="270" fill="#334155" fontSize="8" fontFamily="monospace" fontWeight="bold" letterSpacing="1">
                   BAY OF BENGAL
                 </text>
-                <text x={cx} y="380" fill="#334155" fontSize="8.5" fontFamily="monospace" fontWeight="bold" letterSpacing="1.5" textAnchor="middle">
+                <text x={cx} y="388" fill="#334155" fontSize="8.5" fontFamily="monospace" fontWeight="bold" letterSpacing="1.5" textAnchor="middle">
                   INDIAN OCEAN
                 </text>
 
-                {/* 6. INDIA: Authentic Official International Boundary with Cyber Elevation & Glow */}
-                {/* Outer Glow Aura */}
-                <path d={INDIA_OFFICIAL_PATH} fill="none" stroke="#10b981" strokeWidth="6" opacity="0.2" filter="url(#telemetryBeaconGlow)" />
-                {/* Topographic Cyber Landmass Fill */}
-                <path d={INDIA_OFFICIAL_PATH} fill="#06281e" stroke="#34d399" strokeWidth="1.8" strokeLinejoin="round" />
-                
-                {/* Cyber Elevation Contours (Western Ghats, Deccan, Himalayas) */}
-                <path d="M 248,228 Q 252,248 260,268 Q 262,274 266,280" fill="none" stroke="#10b981" strokeWidth="1.2" strokeDasharray="2 2" opacity="0.7" />
-                <path d="M 265,225 Q 275,245 282,260" fill="none" stroke="#10b981" strokeWidth="1.2" strokeDasharray="2 2" opacity="0.7" />
-                <path d="M 248,198 Q 275,202 312,210" fill="none" stroke="#f59e0b" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.6" />
+                {/* 6. INDIA: Authentic Official Survey of India (SOI) Compliant Map with Cyber Elevation & Glow */}
+                <g transform={`translate(${indiaTx}, ${indiaTy}) scale(${indiaScale})`}>
+                  {/* Outer Glow Aura */}
+                  <g fill="#10b981" opacity="0.3" filter="url(#telemetryBeaconGlow)">
+                    {INDIA_STATES.map((state) => (
+                      <path key={`glow-${state.id}`} d={state.d} />
+                    ))}
+                  </g>
+                  {/* Topographic Cyber Landmass Fill & Administrative State Boundaries */}
+                  <g fill="#06281e" stroke="#34d399" strokeWidth="1.1" strokeLinejoin="round" strokeLinecap="round">
+                    {INDIA_STATES.map((state) => (
+                      <path key={state.id} d={state.d} id={`state-${state.id}`} />
+                    ))}
+                  </g>
+                </g>
 
                 {/* Sri Lanka Island across Palk Strait */}
-                <ellipse cx="282" cy="292" rx="4.5" ry="7" fill="#06281e" stroke="#34d399" strokeWidth="1.2" />
+                <ellipse cx="268" cy="330" rx="5.5" ry="9" fill="#06281e" stroke="#34d399" strokeWidth="1.2" transform="rotate(10 268 330)" />
 
                 {/* Active Smartphone Receiver Beacon in Central India */}
-                <g transform="translate(272, 245)">
+                <g transform="translate(262, 248)">
                   <circle r="14" fill="none" stroke="#f97316" strokeWidth="1.2" opacity="0.3" className="animate-ping" />
                   <circle r="7" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
                   <circle r="3" fill="#ffedd5" stroke="#f97316" strokeWidth="1.5" />
@@ -347,9 +358,9 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 <path d="M 160,115 Q 270,72 380,115" fill="none" stroke="#f97316" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
 
                 {/* Saffron Transmission Beams Projecting Downward onto Indian Subcontinent */}
-                <polygon points="270,82 238,245 315,245" fill="url(#navicTransmissionCone)" stroke="#f97316" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.7" />
-                <polygon points="160,115 240,245 285,275" fill="url(#navicTransmissionCone)" opacity="0.25" />
-                <polygon points="380,115 265,245 310,275" fill="url(#navicTransmissionCone)" opacity="0.25" />
+                <polygon points="270,82 195,260 345,260" fill="url(#navicTransmissionCone)" stroke="#f97316" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.7" />
+                <polygon points="160,115 205,255 285,300" fill="url(#navicTransmissionCone)" opacity="0.25" />
+                <polygon points="380,115 255,300 335,255" fill="url(#navicTransmissionCone)" opacity="0.25" />
 
                 {/* NavIC Prime Satellite: IRNSS-1C (Stationary at Zenith 79°) */}
                 <g transform="translate(270, 82)">
