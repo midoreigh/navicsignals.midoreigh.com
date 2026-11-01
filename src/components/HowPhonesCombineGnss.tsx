@@ -70,7 +70,7 @@ export const HowPhonesCombineGnss: React.FC = () => {
     : 'Clean Direct Line-of-Sight';
 
   return (
-    <section id="how-it-works" className="py-14 sm:py-20 relative border-t border-slate-800/80">
+    <section id="how-it-works" className="py-14 sm:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

@@ -86,6 +86,8 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[900px] h-[400px] sm:h-[650px] bg-gradient-to-tr from-sky-950/30 via-slate-900/10 to-orange-950/15 blur-[120px] rounded-full" />
         <div className="absolute top-10 right-0 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-emerald-950/20 blur-[100px] rounded-full" />
         <div className="absolute bottom-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-emerald-950/10 blur-[110px] rounded-full" />
+        {/* Bottom atmospheric fade seamlessly blending deep space into the next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#050814]/70 to-[#050814] pointer-events-none" />
         
         {/* Authentic Deep-Space Starfield */}
         <svg 
@@ -378,7 +380,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 <polygon points="160,115 205,255 285,300" fill="url(#navicTransmissionCone)" opacity="0.2" />
                 <polygon points="380,115 255,300 335,255" fill="url(#navicTransmissionCone)" opacity="0.2" />
 
-                {/* NavIC Prime Satellite: IRNSS-1C (Stationary at Zenith 79°) */}
+                {/* NavIC Prime Satellite: NVS-03 (Launched Oct 2026 at Zenith) */}
                 <g transform="translate(270, 82)">
                   <circle r="16" fill="#f97316" opacity="0.25" filter="url(#telemetryBeaconGlow)" className="animate-pulse" />
                   <circle r="8" fill="#ea580c" stroke="#ffffff" strokeWidth="1.5" />
@@ -391,30 +393,30 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   <path d="M -4,6 Q 0,10 4,6" fill="none" stroke="#facc15" strokeWidth="1.5" />
                   
                   <text x="0" y="-12" fill="#fed7aa" fontSize="9" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    🇮🇳 IRNSS-1C (GEO)
+                    🇮🇳 NVS-03
                   </text>
                   <text x="0" y="24" fill="#fb923c" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    STATIONARY ZENITH (79°)
+                    L1+L5 • OCT 2026 ZENITH
                   </text>
                 </g>
 
-                {/* NavIC Flank Satellite 1: IRNSS-1F (Western Sky) */}
+                {/* NavIC Flank Satellite 1: IRNSS-1I (Western Sky) */}
                 <g transform="translate(160, 115)">
                   <circle r="6" fill="#ea580c" stroke="#ffffff" strokeWidth="1.2" />
                   <rect x="-18" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
                   <rect x="9" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
                   <text x="0" y="-10" fill="#fed7aa" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    IRNSS-1F (GEO)
+                    IRNSS-1I
                   </text>
                 </g>
 
-                {/* NavIC Flank Satellite 2: IRNSS-1G (Eastern Sky) */}
+                {/* NavIC Flank Satellite 2: NVS-01 (Eastern Sky) */}
                 <g transform="translate(380, 115)">
                   <circle r="6" fill="#ea580c" stroke="#ffffff" strokeWidth="1.2" />
                   <rect x="-18" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
                   <rect x="9" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
                   <text x="0" y="-10" fill="#fed7aa" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    IRNSS-1G (GEO)
+                    NVS-01
                   </text>
                 </g>
 
