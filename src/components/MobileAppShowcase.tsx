@@ -5,53 +5,18 @@ import {
   Radio, 
   Terminal, 
   CheckCircle2, 
-  Layers, 
-  Code, 
   ShieldCheck, 
   ExternalLink, 
-  Sparkles,
-  Wifi,
-  Battery,
-  Flame,
   Satellite as SatelliteIcon,
-  Radar as RadarIcon,
-  Activity,
-  BookOpen
+  Cpu
 } from 'lucide-react';
-import { NAVIC_SATELLITES } from '../data/navicSatellites';
-import { fetchLatestRelease, Release, FALLBACK_RELEASE, REPO } from '../lib/releases';
+import { fetchLatestRelease, Release, FALLBACK_RELEASE } from '../lib/releases';
 
 export const MobileAppShowcase: React.FC = () => {
-  const [activeScreenTab, setActiveScreenTab] = useState<'radar' | 'satellites' | 'nmea' | 'guide'>('radar');
-  const [nmeaLines, setNmeaLines] = useState<string[]>([]);
   const [release, setRelease] = useState<Release>(FALLBACK_RELEASE);
 
   useEffect(() => {
     fetchLatestRelease().then(setRelease);
-  }, []);
-
-  // Generate simulated live NMEA stream including NavIC ($GIGSV / $IRGSV) sentences
-  useEffect(() => {
-    const nmeaSamples = [
-      '$GNGGA,094512.00,1258.4521,N,07735.6124,E,1,16,0.85,912.4,M,-86.3,M,,*4A',
-      '$GNRMC,094512.00,A,1258.4521,N,07735.6124,E,0.08,184.2,011126,,,A*7C',
-      '$GIGSV,3,1,08,02,68,142,42,03,79,178,45,04,59,114,41,05,64,108,40,1*61',
-      '$GIGSV,3,2,08,06,51,246,40,09,72,154,44,10,76,162,46,,,1*68',
-      '$GPGSV,3,1,12,04,32,048,34,10,54,312,39,18,41,086,37,25,19,220,28,1*69',
-      '$GAGSV,2,1,08,05,62,295,42,11,47,210,39,19,38,130,36,24,51,035,41,1*72',
-    ];
-
-    let counter = 0;
-    const interval = setInterval(() => {
-      setNmeaLines(prev => {
-        const nextLine = nmeaSamples[counter % nmeaSamples.length];
-        counter++;
-        const updated = [nextLine, ...prev.slice(0, 10)];
-        return updated;
-      });
-    }, 1800);
-
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -76,276 +41,52 @@ export const MobileAppShowcase: React.FC = () => {
         {/* The Showcase Layout */}
         <div className="mt-10 sm:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
           
-          {/* LEFT: Realistic Phone Mockup Running NavIC Signals Live */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-[290px] xs:w-[310px] sm:w-[340px] max-w-full rounded-[40px] sm:rounded-[44px] bg-[#090d16] p-2.5 sm:p-3 shadow-2xl border-4 border-slate-700/80 ring-1 ring-sky-500/20">
-              
-              <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-white/10 to-transparent rounded-t-[38px] pointer-events-none" />
+          {/* LEFT: Samsung Galaxy S24 Ultra Mockup with Real Hardware Screenshot */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center">
+            
+            {/* S24 Ultra Device Container */}
+            <div className="relative group">
+              {/* Ambient Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-orange-500/20 via-sky-500/10 to-transparent blur-2xl opacity-60 rounded-3xl -z-10" />
 
-              <div className="relative w-full h-[540px] sm:h-[620px] rounded-[32px] sm:rounded-[36px] bg-[#040714] overflow-hidden flex flex-col border border-slate-800">
+              {/* Hardware Button Accents on Right Edge (S24 Ultra Power & Volume) */}
+              <div className="absolute -right-[7px] top-[120px] w-[3px] h-[58px] bg-slate-600 rounded-r-[2px] hidden sm:block" />
+              <div className="absolute -right-[7px] top-[195px] w-[3px] h-[38px] bg-slate-600 rounded-r-[2px] hidden sm:block" />
+
+              {/* Samsung Galaxy S24 Ultra Titanium Frame (Authentic Boxy Silhouette & Ultra-Thin Bezels) */}
+              <div className="relative w-[280px] xs:w-[305px] sm:w-[335px] aspect-[720/1560] rounded-[8px] bg-gradient-to-b from-[#333a48] via-[#212631] to-[#181c24] p-[3.5px] sm:p-[4px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_35px_rgba(249,115,22,0.15)] border border-slate-600/80 ring-1 ring-white/15 select-none">
                 
-                {/* Phone Status Bar */}
-                <div className="pt-2 px-4 sm:px-6 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-slate-400 select-none">
-                  <span className="font-bold text-white">09:45</span>
-                  {/* Notch pill */}
-                  <div className="w-16 sm:w-20 h-3.5 sm:h-4 bg-black rounded-full border border-slate-800 flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1" />
-                    <span className="text-[8px] sm:text-[9px] text-emerald-400 font-mono">GNSS ON</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-slate-300">
-                    <Wifi className="w-3 h-3" />
-                    <Battery className="w-3.5 h-3.5" />
-                  </div>
-                </div>
+                {/* S24 Ultra Flat Titanium Chamfer Highlight */}
+                <div className="absolute inset-x-1 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-                {/* App Header Inside Phone */}
-                <div className="p-3 pb-2 border-b border-slate-800/80 bg-slate-900/60 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-500 flex items-center justify-center text-slate-950 font-black text-xs shadow-md shadow-orange-500/30">
-                      🇮🇳
-                    </div>
-                    <div>
-                      <div className="font-extrabold text-xs text-white tracking-tight flex items-center gap-1">
-                        NavIC Signals
-                      </div>
-                      <div className="text-[9px] sm:text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                        3D Fix: ±1.2m • 7 NavIC Locked
-                      </div>
-                    </div>
-                  </div>
-                  <div className="px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 text-[10px] font-mono font-bold border border-orange-500/20">
-                    68 Sats
-                  </div>
-                </div>
-
-                {/* App Content Area */}
-                <div className="flex-1 overflow-y-auto p-2.5 sm:p-3 space-y-2.5 font-sans">
+                {/* Inner Screen Display (Razor-Thin Uniform Bezels) */}
+                <div className="relative w-full h-full rounded-[4px] overflow-hidden bg-[#0A1024] flex flex-col border border-black/40">
                   
-                  {activeScreenTab === 'satellites' && (
-                    <div className="space-y-2.5">
-                      {/* NavIC Pinned Group */}
-                      <div className="p-2 sm:p-2.5 rounded-xl bg-gradient-to-br from-orange-500/15 via-slate-900 to-emerald-500/10 border border-orange-500/40">
-                        <div className="flex items-center justify-between text-[10px] sm:text-[11px] mb-2 font-bold text-white">
-                          <span className="flex items-center gap-1.5 text-orange-300">
-                            <span>🇮🇳</span> NavIC / IRNSS
-                          </span>
-                          <span className="text-[9px] font-mono text-emerald-400">7 in 3D Fix</span>
-                        </div>
+                  {/* Infinity-O Centered Punch-Hole Camera */}
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-black border border-slate-800/80 flex items-center justify-center pointer-events-none">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0d162a] ring-[0.5px] ring-indigo-400/40" />
+                  </div>
 
-                        <div className="space-y-1.5">
-                          {NAVIC_SATELLITES.slice(0, 4).map(sat => (
-                            <div key={sat.id} className="p-1.5 rounded-lg bg-slate-950/70 border border-slate-800/80 text-[10px] flex items-center justify-between">
-                              <div className="flex items-center gap-1.5 font-mono">
-                                <span className="font-bold text-orange-400">PRN {sat.prn}</span>
-                                <span className="text-slate-300 truncate max-w-[70px] sm:max-w-[85px]">{sat.name}</span>
-                              </div>
-                              <div className="flex items-center gap-1.5 font-mono">
-                                <span className="text-[8px] px-1 py-0.2 rounded bg-orange-500/20 text-orange-300">L5</span>
-                                <span className="text-emerald-400 font-bold">{sat.cn0DbHz} dB</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                  {/* Real Live Hardware Screenshot Captured from Connected S24 Ultra */}
+                  <img 
+                    src="/screenshots/navic-signals-s24.png" 
+                    alt="NavIC Signals companion app running live on Samsung Galaxy S24 Ultra" 
+                    className="w-full h-full object-cover block select-none pointer-events-none"
+                    loading="eager"
+                  />
 
-                      {/* GPS Group Collapsed */}
-                      <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                          <span className="flex items-center gap-1.5">
-                            <span>🇺🇸</span> GPS (NAVSTAR)
-                          </span>
-                          <span className="text-[9px] font-mono text-slate-400">12 in view</span>
-                        </div>
-                        <div className="mt-2 space-y-1">
-                          <div className="p-1.5 rounded-lg bg-slate-950/50 text-[10px] flex justify-between font-mono text-slate-400">
-                            <span>PRN 04 (L1+L5)</span>
-                            <span className="text-sky-400">34.2 dB</span>
-                          </div>
-                          <div className="p-1.5 rounded-lg bg-slate-950/50 text-[10px] flex justify-between font-mono text-slate-400">
-                            <span>PRN 10 (L1+L5)</span>
-                            <span className="text-sky-400">38.6 dB</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Galileo Group */}
-                      <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                          <span className="flex items-center gap-1.5">
-                            <span>🇪🇺</span> Galileo
-                          </span>
-                          <span className="text-[9px] font-mono text-slate-400">8 in view</span>
-                        </div>
-                      </div>
-
-                      {/* BeiDou Group */}
-                      <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                          <span className="flex items-center gap-1.5">
-                            <span>🇨🇳</span> BeiDou (BDS-3)
-                          </span>
-                          <span className="text-[9px] font-mono text-slate-400">11 in view</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {activeScreenTab === 'radar' && (
-                    <div className="space-y-2.5">
-                      {/* Radar Instrument */}
-                      <div className="p-2 flex flex-col items-center">
-                        <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-full border border-sky-500/30 bg-[#020510] relative flex items-center justify-center">
-                          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border border-slate-800" />
-                          <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full border border-slate-800" />
-                          <div className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                          
-                          {/* Clean dots without flag clutter */}
-                          <div className="absolute top-10 left-16 px-1.5 py-0.5 rounded-full bg-orange-500 text-slate-950 text-[8px] font-bold shadow-md animate-pulse">
-                            PRN 3
-                          </div>
-                          <div className="absolute top-14 right-14 px-1.5 py-0.5 rounded-full bg-orange-500 text-slate-950 text-[8px] font-bold shadow-md">
-                            PRN 2
-                          </div>
-                          <div className="absolute bottom-8 left-10 px-1 py-0.2 rounded-full bg-sky-500 text-slate-950 text-[7px] font-bold">
-                            GPS 18
-                          </div>
-                          <div className="absolute bottom-10 right-8 px-1 py-0.2 rounded-full bg-cyan-500 text-slate-950 text-[7px] font-bold">
-                            GAL 05
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* NavIC HUD Card */}
-                      <div className="p-2 rounded-xl bg-orange-500/10 border border-orange-500/30 text-[10px]">
-                        <div className="flex items-center justify-between font-bold text-white mb-1">
-                          <span className="text-orange-400 font-bold">🇮🇳 NavIC High-Zenith Fix</span>
-                          <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-300">3D FIX</span>
-                        </div>
-                        <div className="font-mono text-slate-300 text-[9px]">
-                          10.6568° N, 76.5005° E (±1.2m)
-                        </div>
-                      </div>
-
-                      {/* Live Constellation Tracking Grid */}
-                      <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div className="text-[9px] font-mono font-bold text-slate-400 mb-1.5">
-                          LIVE CONSTELLATION TRACKING
-                        </div>
-                        <div className="grid grid-cols-2 gap-1 text-[9px] font-mono">
-                          <div className="p-1 rounded bg-orange-500/10 text-orange-300 flex justify-between">
-                            <span>🇮🇳 NavIC</span>
-                            <span className="font-bold">3 in fix</span>
-                          </div>
-                          <div className="p-1 rounded bg-blue-500/10 text-blue-300 flex justify-between">
-                            <span>🇺🇸 GPS</span>
-                            <span className="font-bold">12 in fix</span>
-                          </div>
-                          <div className="p-1 rounded bg-cyan-500/10 text-cyan-300 flex justify-between">
-                            <span>🇪🇺 Galileo</span>
-                            <span className="font-bold">10 in fix</span>
-                          </div>
-                          <div className="p-1 rounded bg-pink-500/10 text-pink-300 flex justify-between">
-                            <span>🇨🇳 BeiDou</span>
-                            <span className="font-bold">28 in fix</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {activeScreenTab === 'guide' && (
-                    <div className="space-y-2 text-[10px]">
-                      <div className="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
-                        <div className="text-sky-400 font-bold mb-1">WHAT IS GNSS?</div>
-                        <div className="text-slate-300 text-[9px] leading-relaxed">
-                          The universal engineering standard for space-based positioning. GPS refers specifically to the US network, while modern phones fuse up to 6 constellations simultaneously.
-                        </div>
-                      </div>
-                      <div className="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
-                        <div className="text-orange-400 font-bold mb-1">THE URBAN CANYON ADVANTAGE</div>
-                        <div className="text-slate-300 text-[9px] leading-relaxed">
-                          ISRO stationed NavIC at 35,786 km directly overhead India (70°–85° Zenith), shining down street canyons without building blockage.
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {activeScreenTab === 'nmea' && (
-                    <div className="p-2 bg-black rounded-xl border border-slate-800 font-mono text-[8px] sm:text-[9px] text-emerald-400 space-y-1 overflow-hidden">
-                      <div className="text-slate-500 pb-1 border-b border-slate-900 flex justify-between">
-                        <span>LIVE NMEA 0183 FEED</span>
-                        <span className="text-orange-400">$GIGSV ACTIVE</span>
-                      </div>
-                      {nmeaLines.map((line, i) => (
-                        <div 
-                          key={i} 
-                          className={`truncate ${line.includes('$GIGSV') ? 'text-orange-300 font-bold' : 'text-slate-400'}`}
-                        >
-                          {line}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                </div>
-
-                {/* Native Android Bottom Navigation Bar (Vector Icons, No Emojis) */}
-                <div className="p-1.5 bg-[#0A1024] border-t border-slate-800/80 grid grid-cols-4 gap-1 text-center">
-                  <button
-                    onClick={() => setActiveScreenTab('radar')}
-                    className={`py-1 rounded-xl flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-                      activeScreenTab === 'radar'
-                        ? 'bg-orange-500/20 text-orange-400 font-bold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <RadarIcon className="w-4 h-4" />
-                    <span className="text-[9px]">Radar</span>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveScreenTab('satellites')}
-                    className={`py-1 rounded-xl flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-                      activeScreenTab === 'satellites'
-                        ? 'bg-orange-500/20 text-orange-400 font-bold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <SatelliteIcon className="w-4 h-4" />
-                    <span className="text-[9px]">Satellites</span>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveScreenTab('nmea')}
-                    className={`py-1 rounded-xl flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-                      activeScreenTab === 'nmea'
-                        ? 'bg-orange-500/20 text-orange-400 font-bold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Activity className="w-4 h-4" />
-                    <span className="text-[9px]">Telemetry</span>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveScreenTab('guide')}
-                    className={`py-1 rounded-xl flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-                      activeScreenTab === 'guide'
-                        ? 'bg-orange-500/20 text-orange-400 font-bold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <BookOpen className="w-4 h-4" />
-                    <span className="text-[9px]">Guide</span>
-                  </button>
-                </div>
-
-                <div className="py-2 flex justify-center">
-                  <div className="w-20 sm:w-24 h-1 bg-slate-700 rounded-full" />
+                  {/* Subtle Display Glass Glare Reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.015] to-white/[0.05] pointer-events-none" />
                 </div>
               </div>
+
+              {/* Device Model Caption Pill */}
+              <div className="mt-4 flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-[11px] font-mono text-slate-300 shadow-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Captured on Samsung Galaxy S24 Ultra</span>
+              </div>
             </div>
+
           </div>
 
           {/* RIGHT: App Description, Features & Instant Download */}
@@ -441,11 +182,12 @@ export const MobileAppShowcase: React.FC = () => {
             {/* Alternative: How to test NavIC on Google Play right now */}
             <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 space-y-1.5">
               <div className="font-semibold text-white text-xs flex items-center gap-1.5">
+                <Cpu className="w-3.5 h-3.5 text-sky-400" />
                 <span>Want to test NavIC with existing Google Play apps?</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
                 You can also install the acclaimed open-source <strong className="text-sky-300">GPSTest</strong> by Sean Barbeau (available on Google Play). 
-                Step outside, switch to the <em>Status</em> tab, and filter by constellation: look for the Indian flag <strong className="text-orange-400">🇮🇳 (IRNSS)</strong> with PRNs 2–10 and carrier frequency <strong className="text-emerald-300">L5 (1176.45 MHz)</strong>!
+                Step outside, switch to the <em>Status</em> tab, and filter by constellation: look for the Indian flag <strong className="text-orange-400">🇮🇳 (IRNSS)</strong> with PRNs 2–12 and carrier frequencies <strong className="text-emerald-300">L5 (1176.45 MHz)</strong> or <strong className="text-sky-300">L1 (1575.42 MHz)</strong>!
               </p>
             </div>
 
@@ -514,7 +256,7 @@ export const MobileAppShowcase: React.FC = () => {
               <ul className="space-y-1.5 text-slate-300 text-[11px]">
                 <li className="flex items-start gap-1.5">
                   <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                  <span><strong>Live NavIC PRNs 2–10:</strong> Identifies ISRO constellation spacecraft (<code className="text-orange-300 font-mono text-[10px]">CONSTELLATION_IRNSS = 7</code>) currently overhead.</span>
+                  <span><strong>Live NavIC PRNs 2–12:</strong> Identifies ISRO constellation spacecraft (<code className="text-orange-300 font-mono text-[10px]">CONSTELLATION_IRNSS = 7</code>) such as IRNSS-1B (PRN 2) through NVS-03 (PRN 12) currently overhead.</span>
                 </li>
                 <li className="flex items-start gap-1.5">
                   <span className="text-emerald-400 font-bold shrink-0">✓</span>

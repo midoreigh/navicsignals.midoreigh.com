@@ -129,6 +129,44 @@ export const HowPhonesCombineGnss: React.FC = () => {
               </p>
             </div>
 
+            {/* Strategic Sovereignty: Why India Built NavIC */}
+            <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-orange-500/15 via-slate-900/90 to-amber-500/15 border border-orange-500/40 shadow-lg shadow-orange-500/5">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-orange-400 shrink-0" />
+                  <h4 className="text-xs sm:text-sm font-extrabold text-white">
+                    Why India Built NavIC: Strategic Sovereignty &amp; Defense Autonomy
+                  </h4>
+                </div>
+                <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30 whitespace-nowrap">
+                  National Security
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                During the 1999 Kargil conflict, India urgently needed vital satellite positioning over the mountainous combat zone, but foreign-controlled GPS access was withheld. That critical denial exposed the vulnerability of depending on foreign space infrastructure during times of national crisis. To guarantee complete self-reliance, ISRO developed NavIC so that India’s positioning, navigation, and timing (PNT) remain 100% sovereign and immune to foreign geopolitical leverage or blackout.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                <div className="p-2.5 rounded-lg bg-slate-950/70 border border-slate-800">
+                  <strong className="text-orange-300 block mb-1">Unconditional Reliability</strong>
+                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                    Foreign constellations can be throttled, encrypted, or selectively degraded during conflicts. NavIC guarantees India continuous, uncompromised positioning that no external power can revoke.
+                  </p>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950/70 border border-slate-800">
+                  <strong className="text-amber-300 block mb-1">Dual-Tier Protection</strong>
+                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                    NavIC broadcasts two independent tiers: an open <strong>Standard Positioning Service (SPS)</strong> for civilian smartphones, and an encrypted, jam-resistant <strong>Restricted Service (RS)</strong> exclusively for defense forces.
+                  </p>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950/70 border border-slate-800">
+                  <strong className="text-emerald-300 block mb-1">Critical Infrastructure Anchor</strong>
+                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                    Beyond defense, NavIC provides sovereign atomic time synchronization for India's telecommunications backbones, power distribution grids, financial banking networks, and civil aviation corridors.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Bottom 2 Cards: The Bisleri Effect & Smartphone Multi-Constellation Modem */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs pt-1">
               <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
@@ -637,8 +675,8 @@ export const HowPhonesCombineGnss: React.FC = () => {
                 <g 
                   onClick={() => setBuildingHeight(prev => prev > 70 ? 15 : prev + 25)}
                   className="cursor-pointer"
-                  title="Click to change building height"
                 >
+                  <title>Click to change building height</title>
                   <rect 
                     x="0" 
                     y={roofY} 
@@ -680,8 +718,8 @@ export const HowPhonesCombineGnss: React.FC = () => {
                 <g 
                   onClick={() => setBuildingHeight(prev => prev > 70 ? 15 : prev + 25)}
                   className="cursor-pointer"
-                  title="Click to change building height"
                 >
+                  <title>Click to change building height</title>
                   <rect 
                     x="390" 
                     y={roofY} 

@@ -79,4 +79,61 @@ public class Satellite {
         }
         return "Dual-Band";
     }
+
+    public String getSatelliteName() {
+        if (constellationType == 7) { // CONSTELLATION_IRNSS / NavIC
+            switch (svid) {
+                case 1: return "IRNSS-1A";
+                case 2: return "IRNSS-1B";
+                case 3: return "IRNSS-1C";
+                case 4: return "IRNSS-1D";
+                case 5: return "IRNSS-1E";
+                case 6: return "IRNSS-1F";
+                case 7: return "IRNSS-1G";
+                case 8: return "IRNSS-1H";
+                case 9: return "IRNSS-1I";
+                case 10: return "NVS-01";
+                case 11: return "NVS-02";
+                case 12: return "NVS-03";
+                default: return "IRNSS-" + svid;
+            }
+        } else if (constellationType == 1) { // GPS
+            return "GPS-" + svid;
+        } else if (constellationType == 6) { // Galileo
+            return "GSAT-" + svid;
+        } else if (constellationType == 5) { // BeiDou
+            return "BDS-" + svid;
+        } else if (constellationType == 3) { // GLONASS
+            return "GLO-" + svid;
+        } else if (constellationType == 4) { // QZSS
+            return "QZS-" + svid;
+        } else if (constellationType == 2) { // SBAS (GAGAN)
+            if (svid == 127) return "GSAT-8 (GAGAN)";
+            if (svid == 128) return "GSAT-10 (GAGAN)";
+            if (svid == 132) return "GSAT-15 (GAGAN)";
+            return "SBAS-" + svid;
+        }
+        return constellationName + "-" + svid;
+    }
+
+    public String getShortName() {
+        if (constellationType == 7) {
+            switch (svid) {
+                case 1: return "1A";
+                case 2: return "1B";
+                case 3: return "1C";
+                case 4: return "1D";
+                case 5: return "1E";
+                case 6: return "1F";
+                case 7: return "1G";
+                case 8: return "1H";
+                case 9: return "1I";
+                case 10: return "NVS1";
+                case 11: return "NVS2";
+                case 12: return "NVS3";
+                default: return "I" + svid;
+            }
+        }
+        return String.valueOf(svid);
+    }
 }

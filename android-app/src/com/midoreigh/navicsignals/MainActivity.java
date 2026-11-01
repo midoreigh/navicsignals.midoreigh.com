@@ -384,7 +384,7 @@ public class MainActivity extends Activity implements LocationListener, OnNmeaMe
 
                 tvFlag.setVisibility(View.GONE); // Section header already displays 🇮🇳
                 tvPrn.setText("PRN " + sat.prn);
-                tvConst.setText(sat.usedInFix ? "NavIC (3D Fix Locked)" : "NavIC");
+                tvConst.setText(sat.getSatelliteName() + (sat.usedInFix ? " • 3D Fix" : ""));
                 tvCarrier.setText(sat.getCarrierLabel());
                 tvElAz.setText(String.format("El: %.0f°", sat.elevation));
                 tvCn0.setText(String.format("%.1f dB", sat.cn0DbHz));
@@ -414,7 +414,7 @@ public class MainActivity extends Activity implements LocationListener, OnNmeaMe
                 tvFlag.setVisibility(View.VISIBLE);
                 tvFlag.setText(sat.getFlag()); // Country flag (🇺🇸, 🇪🇺, 🇨🇳, 🇷🇺, 🇯🇵)
                 tvPrn.setText("PRN " + sat.prn);
-                tvConst.setText(sat.constellationName + (sat.usedInFix ? " (Locked)" : ""));
+                tvConst.setText(sat.getSatelliteName() + (sat.usedInFix ? " • 3D Fix" : ""));
                 tvCarrier.setText(sat.getCarrierLabel());
                 tvElAz.setText(String.format("El: %.0f°", sat.elevation));
                 tvCn0.setText(String.format("%.1f dB", sat.cn0DbHz));
@@ -480,6 +480,12 @@ public class MainActivity extends Activity implements LocationListener, OnNmeaMe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.parseColor("#0A1024"));
+            getWindow().setNavigationBarColor(Color.parseColor("#070B18"));
+        }
+
         setContentView(R.layout.activity_main);
 
         mainHandler = new Handler(Looper.getMainLooper(), this);

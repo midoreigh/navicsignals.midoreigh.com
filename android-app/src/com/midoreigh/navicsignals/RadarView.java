@@ -103,6 +103,14 @@ public class RadarView extends View {
                 // Main saffron body
                 canvas.drawCircle(sx, sy, 12f, navicPaint);
                 canvas.drawText(String.valueOf(sat.prn), sx, sy + 5f, prnTextPaint);
+
+                // Spacecraft label beneath dot
+                Paint subText = new Paint(Paint.ANTI_ALIAS_FLAG);
+                subText.setColor(Color.parseColor("#FED7AA"));
+                subText.setTextSize(10f);
+                subText.setTextAlign(Paint.Align.CENTER);
+                subText.setFakeBoldText(true);
+                canvas.drawText(sat.getShortName(), sx, sy + 22f, subText);
             } else {
                 // Satellite dot
                 canvas.drawCircle(sx, sy, 9f, otherPaint);

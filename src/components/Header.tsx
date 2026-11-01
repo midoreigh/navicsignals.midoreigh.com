@@ -48,48 +48,51 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
-            <a
-              href="#how-it-works"
-              className="hover:text-sky-400 transition-colors flex items-center gap-1.5"
-            >
-              <Compass className="w-4 h-4 text-sky-400" />
-              How NavIC Works
-            </a>
-            <button
-              onClick={onCheckPhone}
-              className="hover:text-purple-400 transition-colors flex items-center gap-1.5 cursor-pointer"
-            >
-              <Smartphone className="w-4 h-4 text-purple-400" />
-              Phone Compatibility
-            </button>
-          </nav>
+          {/* Right Group: Nav Links (Aligned to right, left of time), Clocks, & CTA */}
+          <div className="flex items-center gap-5 lg:gap-6">
+            {/* Nav Links */}
+            <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+              <a
+                href="#how-it-works"
+                className="hover:text-sky-400 transition-colors flex items-center gap-1.5"
+              >
+                <Compass className="w-4 h-4 text-sky-400" />
+                How NavIC Works
+              </a>
+              <button
+                onClick={onCheckPhone}
+                className="hover:text-purple-400 transition-colors flex items-center gap-1.5 cursor-pointer"
+              >
+                <Smartphone className="w-4 h-4 text-purple-400" />
+                Phone Compatibility
+              </button>
+            </nav>
 
-          {/* Time & CTA Button */}
-          <div className="flex items-center gap-3">
-            {/* Clocks */}
-            <div className="hidden xl:flex flex-col text-right text-[10px] font-mono text-slate-400 bg-slate-900/60 px-2.5 py-1 rounded-md border border-slate-800">
-              <span className="text-slate-300">IST <span className="text-orange-400 font-semibold">{istTime}</span></span>
-              <span>UTC <span className="text-sky-400">{utcTime}</span></span>
+            {/* Time Clocks & CTA Button */}
+            <div className="flex items-center gap-3">
+              {/* Clocks */}
+              <div className="hidden xl:flex flex-col text-right text-[10px] font-mono text-slate-400 bg-slate-900/60 px-2.5 py-1 rounded-md border border-slate-800">
+                <span className="text-slate-300">IST <span className="text-orange-400 font-semibold">{istTime}</span></span>
+                <span>UTC <span className="text-sky-400">{utcTime}</span></span>
+              </div>
+
+              <button
+                onClick={onGetApp}
+                className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-orange-500/20 to-amber-500/20 hover:from-orange-500/30 hover:to-amber-500/30 text-orange-300 border border-orange-500/40 hover:border-orange-400 shadow-md transition-all cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5 text-orange-400" />
+                <span>Get Android App</span>
+              </button>
+
+              {/* Mobile menu button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl bg-slate-900/80 border border-slate-800 active:scale-95 transition-all cursor-pointer"
+                aria-label="Toggle Navigation Menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5 text-orange-400" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
-
-            <button
-              onClick={onGetApp}
-              className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-orange-500/20 to-amber-500/20 hover:from-orange-500/30 hover:to-amber-500/30 text-orange-300 border border-orange-500/40 hover:border-orange-400 shadow-md transition-all cursor-pointer"
-            >
-              <Download className="w-3.5 h-3.5 text-orange-400" />
-              <span>Get Android App</span>
-            </button>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl bg-slate-900/80 border border-slate-800 active:scale-95 transition-all cursor-pointer"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-orange-400" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
         </div>
 

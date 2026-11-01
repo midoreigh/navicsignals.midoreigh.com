@@ -15,7 +15,7 @@ echo "==> 1. Compiling resources with aapt2..."
 
 echo "==> 2. Linking resources and generating R.java..."
 "$BT/aapt2" link -o build/unsigned.apk -I "$JAR" --manifest AndroidManifest.xml \
-    --min-sdk-version 26 --target-sdk-version 34 --version-code 9 --version-name 0.9 \
+    --min-sdk-version 26 --target-sdk-version 34 --version-code 12 --version-name 1.0 \
     --java build/src \
     build/res.zip
 

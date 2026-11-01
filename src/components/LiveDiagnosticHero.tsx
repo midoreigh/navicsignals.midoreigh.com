@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { WORLD_LAND_PATH } from '../data/earthGlobePaths';
 import { INDIA_OUTLINE_PATH } from '../data/indiaMapPaths';
+import { HERO_STARS, HERO_BRIGHT_STARS } from '../data/spaceStarfield';
 
 interface LiveDiagnosticHeroProps {
   onCheckPhone: () => void;
@@ -80,31 +81,94 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
   return (
     <section className="relative overflow-hidden pt-4 pb-14 sm:pt-8 sm:pb-20 bg-[#02040b]">
       {/* Full-Bleed Deep Space Background: Stars, Cosmic Coordinates & Distant Nebular Dust */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Deep space color aura */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[900px] h-[400px] sm:h-[650px] bg-gradient-to-tr from-sky-950/30 via-slate-900/10 to-orange-950/15 blur-[120px] rounded-full" />
-        <div className="absolute top-10 right-0 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-sky-900/15 blur-[100px] rounded-full" />
+        <div className="absolute top-10 right-0 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-emerald-950/20 blur-[100px] rounded-full" />
         <div className="absolute bottom-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-emerald-950/10 blur-[110px] rounded-full" />
         
-        {/* Starfield Particles */}
-        <svg className="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="5%" cy="12%" r="1" fill="#ffffff" opacity="0.5" />
-          <circle cx="14%" cy="28%" r="0.8" fill="#38bdf8" opacity="0.6" />
-          <circle cx="22%" cy="8%" r="1.2" fill="#ffffff" opacity="0.7" />
-          <circle cx="31%" cy="45%" r="0.7" fill="#ffffff" opacity="0.3" />
-          <circle cx="42%" cy="18%" r="1" fill="#facc15" opacity="0.5" />
-          <circle cx="48%" cy="75%" r="0.9" fill="#ffffff" opacity="0.4" />
-          <circle cx="58%" cy="10%" r="1.3" fill="#38bdf8" opacity="0.6" />
-          <circle cx="68%" cy="32%" r="0.8" fill="#ffffff" opacity="0.5" />
-          <circle cx="75%" cy="85%" r="1" fill="#ffffff" opacity="0.4" />
-          <circle cx="85%" cy="15%" r="1.1" fill="#fb923c" opacity="0.6" />
-          <circle cx="92%" cy="62%" r="0.7" fill="#38bdf8" opacity="0.5" />
-          <circle cx="96%" cy="25%" r="1" fill="#ffffff" opacity="0.7" />
+        {/* Authentic Deep-Space Starfield */}
+        <svg 
+          className="absolute inset-0 w-full h-full" 
+          viewBox="0 0 1440 800" 
+          preserveAspectRatio="xMidYMid slice" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <style>{`
+            @keyframes starTwinkle {
+              0%, 100% { opacity: 1; transform: scale(1); }
+              50% { opacity: 0.25; transform: scale(0.85); }
+            }
+          `}</style>
+          <defs>
+            <radialGradient id="heroStarCoreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="35%" stopColor="#38bdf8" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* Background Ambient Stars */}
+          {HERO_STARS.map((star, idx) => (
+            <circle
+              key={idx}
+              cx={star.x}
+              cy={star.y}
+              r={star.r}
+              fill={star.c}
+              opacity={star.op}
+              style={
+                star.pulse
+                  ? {
+                      animation: `starTwinkle ${star.pulseDur || '3.5s'} ease-in-out infinite`,
+                      animationDelay: star.pulseDelay || '0s',
+                      transformOrigin: `${star.x}px ${star.y}px`,
+                    }
+                  : undefined
+              }
+            />
+          ))}
+
+          {/* Prominent Bright Navigational Stars with Subtle Diffraction Spikes */}
+          {HERO_BRIGHT_STARS.map((star, idx) => (
+            <g 
+              key={`bright-${idx}`}
+              style={{
+                animation: `starTwinkle ${star.pulseDur || '4s'} ease-in-out infinite`,
+                animationDelay: star.pulseDelay || '0s',
+                transformOrigin: `${star.x}px ${star.y}px`,
+              }}
+            >
+              {/* Outer soft aura */}
+              <circle cx={star.x} cy={star.y} r={star.r * 3.5} fill="url(#heroStarCoreGlow)" opacity="0.45" />
+              {/* Core star */}
+              <circle cx={star.x} cy={star.y} r={star.r} fill={star.c} opacity="0.95" />
+              {/* 4-point cross diffraction spikes */}
+              <line 
+                x1={star.x - 7} 
+                y1={star.y} 
+                x2={star.x + 7} 
+                y2={star.y} 
+                stroke={star.c} 
+                strokeWidth="0.7" 
+                opacity="0.8" 
+              />
+              <line 
+                x1={star.x} 
+                y1={star.y - 7} 
+                x2={star.x} 
+                y2={star.y + 7} 
+                stroke={star.c} 
+                strokeWidth="0.7" 
+                opacity="0.8" 
+              />
+            </g>
+          ))}
         </svg>
 
         {/* Subtle Celestial Coordinate Grid */}
         <div 
-          className="absolute inset-0 opacity-[0.025]" 
+          className="absolute inset-0 opacity-[0.035]" 
           style={{ 
             backgroundImage: `radial-gradient(rgba(56, 189, 248, 0.9) 1px, transparent 1px)`, 
             backgroundSize: '32px 32px' 
@@ -112,13 +176,13 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 lg:gap-x-12 gap-y-6">
           
           {/* ============================================================ */}
-          {/* LEFT COLUMN: Title, Subtitle, Actions, and Specifications     */}
+          {/* 1. HERO CONTENT & ACTIONS (Desktop: Row 1, Col 1-6)          */}
           {/* ============================================================ */}
-          <div className="lg:col-span-6 space-y-5 text-center lg:text-left z-10">
+          <div className="lg:col-span-6 order-1 self-center space-y-5 text-center lg:text-left z-10">
             
             {/* Constellation Status Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-orange-500/30 shadow-lg shadow-orange-500/5 text-[11px] sm:text-xs text-orange-200">
@@ -178,32 +242,12 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
               </button>
             </div>
 
-            {/* Quick Metrics Bar */}
-            <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center lg:text-left border-t border-slate-800/80">
-              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                <div className="text-sm sm:text-lg font-extrabold text-orange-400 font-mono">8 Birds</div>
-                <div className="text-[10px] text-slate-400">Regional IRNSS Fleet</div>
-              </div>
-              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                <div className="text-sm sm:text-lg font-extrabold text-sky-400 font-mono truncate">1176.45 MHz</div>
-                <div className="text-[10px] text-slate-400">NavIC L5 Carrier</div>
-              </div>
-              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                <div className="text-sm sm:text-lg font-extrabold text-emerald-400 font-mono">&lt; 2.5 m</div>
-                <div className="text-[10px] text-slate-400">Precision in India</div>
-              </div>
-              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                <div className="text-sm sm:text-lg font-extrabold text-purple-400 font-mono">75° - 85°</div>
-                <div className="text-[10px] text-slate-400">Zenith Lock Angle</div>
-              </div>
-            </div>
-
           </div>
 
           {/* ============================================================ */}
-          {/* RIGHT COLUMN: 3D Dark Earth with Cyber Telemetry & Satellites */}
+          {/* 2. 3D DARK EARTH GLOBE WITH SATELLITES (Desktop: Row 1, Col 7-12) */}
           {/* ============================================================ */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center relative">
+          <div className="lg:col-span-6 order-3 lg:order-2 self-center flex flex-col items-center justify-center relative">
             <div className="relative w-full max-w-[620px] aspect-[600/560] flex items-center justify-center select-none">
               
               <svg viewBox="0 0 600 560" className="w-full h-full overflow-visible">
@@ -235,24 +279,31 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                     <stop offset="100%" stopColor="#010307" />
                   </radialGradient>
 
-                  {/* Atmospheric Rim Highlight */}
+                  {/* Atmospheric Aurora Rim Highlight */}
                   <radialGradient id="earthRimGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="85%" stopColor="#06b6d4" stopOpacity="0" />
-                    <stop offset="96%" stopColor="#38bdf8" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.9" />
+                    <stop offset="84%" stopColor="#10b981" stopOpacity="0" />
+                    <stop offset="94%" stopColor="#34d399" stopOpacity="0.35" />
+                    <stop offset="98%" stopColor="#10b981" stopOpacity="0.75" />
+                    <stop offset="100%" stopColor="#059669" stopOpacity="0.95" />
                   </radialGradient>
 
-                  {/* NavIC Transmission Conical Beam */}
+                  {/* NavIC Transmission Conical Beam Fill */}
                   <linearGradient id="navicTransmissionCone" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#f97316" stopOpacity="0.6" />
                     <stop offset="40%" stopColor="#fb923c" stopOpacity="0.18" />
-                    <stop offset="100%" stopColor="#10b981" stopOpacity="0.02" />
+                    <stop offset="100%" stopColor="#fb923c" stopOpacity="0.0" />
+                  </linearGradient>
+
+                  {/* India Landmass Saffron/Amber Fill */}
+                  <linearGradient id="indiaLandmassFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#3a1c09" />
+                    <stop offset="100%" stopColor="#1e0e05" />
                   </linearGradient>
                 </defs>
 
-                {/* 1. Atmospheric Outer Halo & Rim Aura */}
-                <circle cx={cx} cy={cy} r="218" fill="none" stroke="#06b6d4" strokeWidth="6" opacity="0.35" filter="url(#atmosphereLimbGlow)" />
-                <circle cx={cx} cy={cy} r="212" fill="none" stroke="#38bdf8" strokeWidth="3" opacity="0.75" />
+                {/* 1. Atmospheric Outer Halo & Rim Aura (Aurora Green) */}
+                <circle cx={cx} cy={cy} r="218" fill="none" stroke="#10b981" strokeWidth="6" opacity="0.4" filter="url(#atmosphereLimbGlow)" />
+                <circle cx={cx} cy={cy} r="212" fill="none" stroke="#34d399" strokeWidth="3" opacity="0.8" />
 
                 {/* 2. Dark Earth Sphere Body */}
                 <circle cx={cx} cy={cy} r="210" fill="url(#earthGlobeBody)" />
@@ -280,45 +331,17 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
 
                 {/* 6. INDIA: Authentic Official Survey of India (SOI) Compliant Silhouette (Clean Outline, No State Borders) */}
                 <g transform={`translate(${indiaTx}, ${indiaTy}) scale(${indiaScale})`}>
-                  {/* Outer Glow Aura */}
-                  <path d={INDIA_OUTLINE_PATH} fill="none" stroke="#10b981" strokeWidth="14" opacity="0.25" filter="url(#telemetryBeaconGlow)" />
-                  {/* Topographic Cyber Landmass Fill */}
-                  <path d={INDIA_OUTLINE_PATH} fill="#06281e" stroke="#34d399" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+                  {/* Outer Saffron Glow Aura */}
+                  <path d={INDIA_OUTLINE_PATH} fill="none" stroke="#f97316" strokeWidth="14" opacity="0.3" filter="url(#telemetryBeaconGlow)" />
+                  {/* Topographic Landmass Fill & Signature NavIC Saffron Border */}
+                  <path d={INDIA_OUTLINE_PATH} fill="url(#indiaLandmassFill)" stroke="#fb923c" strokeWidth="3.2" strokeLinejoin="round" strokeLinecap="round" />
                 </g>
 
                 {/* Active Smartphone Receiver Beacon in Central India (Nagpur/MP Geographic Centroid) */}
                 <g transform="translate(248, 240)">
-                  <circle r="14" fill="none" stroke="#f97316" strokeWidth="1.2" opacity="0.3" className="animate-ping" />
-                  <circle r="7" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
-                  <circle r="3" fill="#ffedd5" stroke="#f97316" strokeWidth="1.5" />
-                  <text 
-                    x="0" 
-                    y="15" 
-                    fill="#fed7aa" 
-                    stroke="#050814" 
-                    strokeWidth="2.5" 
-                    paintOrder="stroke" 
-                    fontSize="8.5" 
-                    fontWeight="bold" 
-                    textAnchor="middle" 
-                    fontFamily="monospace"
-                  >
-                    INDIA
-                  </text>
-                  <text 
-                    x="0" 
-                    y="24" 
-                    fill="#6ee7b7" 
-                    stroke="#050814" 
-                    strokeWidth="2" 
-                    paintOrder="stroke" 
-                    fontSize="6.5" 
-                    fontWeight="600" 
-                    textAnchor="middle" 
-                    fontFamily="monospace"
-                  >
-                    [RECEIVER ZENITH]
-                  </text>
+                  <circle r="14" fill="none" stroke="#38bdf8" strokeWidth="1.2" opacity="0.4" className="animate-ping" />
+                  <circle r="7" fill="none" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
+                  <circle r="3" fill="#e0f2fe" stroke="#0284c7" strokeWidth="1.5" />
                 </g>
 
                 {/* 7. MEO INCLINED ORBITAL RING (GPS 20,200 km Altitude, 55° Inclination) */}
@@ -350,10 +373,10 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 {/* Overhead Regional Canopy Arc Connecting the 3 Stationary Satellites */}
                 <path d="M 160,115 Q 270,72 380,115" fill="none" stroke="#f97316" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
 
-                {/* Saffron Transmission Beams Projecting Downward onto Indian Subcontinent */}
-                <polygon points="270,82 195,260 345,260" fill="url(#navicTransmissionCone)" stroke="#f97316" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.7" />
-                <polygon points="160,115 205,255 285,300" fill="url(#navicTransmissionCone)" opacity="0.25" />
-                <polygon points="380,115 255,300 335,255" fill="url(#navicTransmissionCone)" opacity="0.25" />
+                {/* Saffron Transmission Beams Projecting Downward onto Indian Subcontinent (Clean Ambient Beams without Dotted Triangle Outlines) */}
+                <polygon points="270,82 195,260 345,260" fill="url(#navicTransmissionCone)" opacity="0.45" />
+                <polygon points="160,115 205,255 285,300" fill="url(#navicTransmissionCone)" opacity="0.2" />
+                <polygon points="380,115 255,300 335,255" fill="url(#navicTransmissionCone)" opacity="0.2" />
 
                 {/* NavIC Prime Satellite: IRNSS-1C (Stationary at Zenith 79°) */}
                 <g transform="translate(270, 82)">
@@ -424,11 +447,39 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
 
               </svg>
             </div>
+          </div>
 
-            {/* Bottom Comparison Telemetry Cards (Structured & Cleanly Spaced) */}
-            <div className="mt-3 w-full max-w-[600px] grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          {/* ============================================================ */}
+          {/* 3. LEFT QUICK METRICS (Desktop: Row 2, Col 1-6)             */}
+          {/* ============================================================ */}
+          <div className="lg:col-span-6 order-2 lg:order-3 z-10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center lg:text-left h-full">
+              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-center h-full">
+                <div className="text-sm sm:text-lg font-extrabold text-orange-400 font-mono">7 Satellites</div>
+                <div className="text-[10px] text-slate-400">3 GEO + 4 GSO Baseline</div>
+              </div>
+              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-center h-full">
+                <div className="text-sm sm:text-lg font-extrabold text-sky-400 font-mono truncate">1176.45 MHz</div>
+                <div className="text-[10px] text-slate-400">NavIC L5 Carrier</div>
+              </div>
+              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-center h-full">
+                <div className="text-sm sm:text-lg font-extrabold text-emerald-400 font-mono">&lt; 2.5 m</div>
+                <div className="text-[10px] text-slate-400">Precision in India</div>
+              </div>
+              <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-center h-full">
+                <div className="text-sm sm:text-lg font-extrabold text-purple-400 font-mono">75° - 85°</div>
+                <div className="text-[10px] text-slate-400">Zenith Lock Angle</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 4. RIGHT LIVE TELEMETRY (Desktop: Row 2, Col 7-12)          */}
+          {/* ============================================================ */}
+          <div className="lg:col-span-6 order-4 z-10">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2.5 h-full">
               {/* NavIC Telemetry Card */}
-              <div className="p-2.5 sm:p-3 rounded-xl bg-orange-500/10 border border-orange-500/30 flex flex-col gap-1.5 shadow-lg shadow-orange-500/5">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-orange-500/10 border border-orange-500/30 flex flex-col justify-between gap-1.5 shadow-lg shadow-orange-500/5 h-full">
                 <div className="flex items-center justify-between font-mono">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-orange-400">
                     <span className="w-2 h-2 rounded-full bg-orange-500 shrink-0"></span>
@@ -446,7 +497,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
               </div>
 
               {/* GPS Telemetry Card */}
-              <div className={`p-2.5 sm:p-3 rounded-xl border flex flex-col gap-1.5 transition-colors shadow-lg ${
+              <div className={`p-2.5 sm:p-3 rounded-xl border flex flex-col justify-between gap-1.5 transition-colors shadow-lg h-full ${
                 isOcculted ? 'bg-slate-900/60 border-slate-700/60' : 'bg-sky-500/10 border-sky-500/30 shadow-sky-500/5'
               }`}>
                 <div className="flex items-center justify-between font-mono">
@@ -471,7 +522,6 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 </div>
               </div>
             </div>
-
           </div>
 
         </div>
