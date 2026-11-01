@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NavIC SkyView</string>
+    <string name="app_name">NavIC Signals</string>
     <string name="navic_title">NavIC (IRNSS) - India [IND]</string>
     <string name="pinned_top">PINNED AT TOP</string>
     <string name="other_constellations">Other GNSS Constellations</string>

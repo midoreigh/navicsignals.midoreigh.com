@@ -16,7 +16,7 @@ export const FALLBACK_RELEASE: Release = {
   version: '0.9',
   tag: 'android-v0.9',
   date: '2026-11-01',
-  download: `${REPO}/releases/download/android-v0.9/NavICSkyView-v0.9.apk`,
+  download: `${REPO}/releases/download/android-v0.9/NavICSignals-v0.9.apk`,
   page: `${REPO}/releases`,
   size: 672000,
 };

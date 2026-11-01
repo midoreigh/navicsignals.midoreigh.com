@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NavICSkyView"
+rootProject.name = "NavICSignals"
 include(":app")

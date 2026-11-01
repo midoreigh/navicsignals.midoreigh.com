@@ -1,4 +1,4 @@
-package com.isro.navicskyview;
+package com.midoreigh.navicsignals;
 
 import android.Manifest;
 import android.app.Activity;

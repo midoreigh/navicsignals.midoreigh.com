@@ -1,4 +1,4 @@
-package com.isro.navicskyview;
+package com.midoreigh.navicsignals;
 
 public class Satellite {
     public final int svid;

@@ -28,7 +28,7 @@ jobs:
           ./gradlew assembleRelease
           version="${GITHUB_REF_NAME#android-v}"
           version="${version#v}"
-          apk="NavICSkyView-v${version}.apk"
+          apk="NavICSignals-v${version}.apk"
           cp app/build/outputs/apk/release/app-release.apk "$apk"
           shasum -a 256 "$apk" > "$apk.sha256"
 
@@ -39,10 +39,10 @@ jobs:
           version="${GITHUB_REF_NAME#android-v}"
           version="${version#v}"
           gh release create "$GITHUB_REF_NAME" \
-            "android-app/NavICSkyView-v${version}.apk" \
-            "android-app/NavICSkyView-v${version}.apk.sha256" \
-            --title "NavIC SkyView v${version}" \
-            --notes "### NavIC SkyView v${version}
+            "android-app/NavICSignals-v${version}.apk" \
+            "android-app/NavICSignals-v${version}.apk.sha256" \
+            --title "NavIC Signals v${version}" \
+            --notes "### NavIC Signals v${version}
 - Direct hardware access to ISRO NavIC (IRNSS) satellite signals & high-elevation zenith tracking
 - Full multi-constellation GNSS support (NavIC, GPS, Galileo, BeiDou, GLONASS, QZSS)
 - Real-time NMEA sentence logger (\$GIGSV / \$IRGSV)

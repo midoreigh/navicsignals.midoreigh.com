@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.isro.navicskyview"
+    namespace = "com.midoreigh.navicsignals"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.isro.navicskyview"
+        applicationId = "com.midoreigh.navicsignals"
         minSdk = 26
         targetSdk = 34
         // The Android app is versioned on its own; releases are tagged android-v<versionName>.

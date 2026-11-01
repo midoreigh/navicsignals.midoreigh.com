@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NavIC SkyView"
+                android:text="NavIC Signals"
                 android:textColor="@color/text_white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -155,7 +155,7 @@
                     android:layout_marginBottom="4dp" />
 
                 <!-- The Radar Surface (Clean, No Flag Clutter, Generous Scale) -->
-                <com.isro.navicskyview.RadarView
+                <com.midoreigh.navicsignals.RadarView
                     android:id="@+id/radar_view"
                     android:layout_width="280dp"
                     android:layout_height="280dp"

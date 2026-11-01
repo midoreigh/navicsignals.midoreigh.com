@@ -69,14 +69,14 @@ export const MobileAppShowcase: React.FC = () => {
           </h2>
           <p className="mt-2.5 sm:mt-3 text-slate-300 text-xs sm:text-base leading-relaxed px-1">
             Because web browsers cannot access raw satellite baseband data due to OS sandboxing, we built{' '}
-            <strong className="text-white">NavIC SkyView</strong> — an open-source Android app that interfaces directly with your phone's GNSS driver to display <strong className="text-orange-400">NavIC satellites prominently highlighted at the top</strong>.
+            <strong className="text-white">NavIC Signals</strong> — an open-source Android app that interfaces directly with your phone's GNSS driver to display <strong className="text-orange-400">NavIC satellites prominently highlighted at the top</strong>.
           </p>
         </div>
 
         {/* The Showcase Layout */}
         <div className="mt-10 sm:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
           
-          {/* LEFT: Realistic Phone Mockup Running NavIC SkyView Live */}
+          {/* LEFT: Realistic Phone Mockup Running NavIC Signals Live */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-[290px] xs:w-[310px] sm:w-[340px] max-w-full rounded-[40px] sm:rounded-[44px] bg-[#090d16] p-2.5 sm:p-3 shadow-2xl border-4 border-slate-700/80 ring-1 ring-sky-500/20">
               
@@ -106,7 +106,7 @@ export const MobileAppShowcase: React.FC = () => {
                     </div>
                     <div>
                       <div className="font-extrabold text-xs text-white tracking-tight flex items-center gap-1">
-                        NavIC SkyView
+                        NavIC Signals
                       </div>
                       <div className="text-[9px] sm:text-[10px] text-emerald-400 font-mono flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
@@ -357,10 +357,10 @@ export const MobileAppShowcase: React.FC = () => {
                 <span>Zero Ads • Open Source • Privacy First</span>
               </div>
               <h3 className="text-xl sm:text-3xl font-bold text-white">
-                Download NavIC SkyView for Android
+                Download NavIC Signals for Android
               </h3>
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                NavIC SkyView bypasses browser restrictions by using Android's native <code className="text-sky-300 font-mono">GnssStatus.Callback</code>. It identifies the hardware talker codes and groups all IRNSS / NavIC satellites in view right at the top.
+                NavIC Signals bypasses browser restrictions by using Android's native <code className="text-sky-300 font-mono">GnssStatus.Callback</code>. It identifies the hardware talker codes and groups all IRNSS / NavIC satellites in view right at the top.
               </p>
             </div>
 
@@ -411,7 +411,7 @@ export const MobileAppShowcase: React.FC = () => {
             <div className="p-4 sm:p-5 rounded-2xl glass-card-navic border border-orange-500/30 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
               <div>
                 <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                  <span>NavIC SkyView APK</span>
+                  <span>NavIC Signals APK</span>
                   <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300">
                     GitHub Release
                   </span>

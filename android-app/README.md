@@ -1,16 +1,16 @@
-# NavIC SkyView — Android Companion App
+# NavIC Signals — Android Companion App
 
 A beautiful, native Android application for monitoring live GNSS satellite signals with **India's NavIC (IRNSS) constellation pinned prominently at the top**.
 
 ---
 
-## Why NavIC SkyView?
+## Why NavIC Signals?
 
 Modern smartphones combine radio signals from up to 6 satellite constellations (GPS, NavIC, Galileo, BeiDou, GLONASS, QZSS). 
 
 Because web browsers run in a sandboxed security environment (W3C Geolocation API), websites cannot inspect raw radio frequency measurements, PRN numbers, or Carrier-to-Noise density ($C/N_0$ in dB-Hz). 
 
-**NavIC SkyView** uses Android's native `GnssStatus.Callback` and `LocationManager` to decode live satellite baseband telemetry directly from your phone's GNSS antenna.
+**NavIC Signals** uses Android's native `GnssStatus.Callback` and `LocationManager` to decode live satellite baseband telemetry directly from your phone's GNSS antenna.
 
 ---
 

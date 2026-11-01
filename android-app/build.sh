@@ -38,7 +38,7 @@ if [ ! -f "$KS" ]; then
     keytool -genkeypair -keystore "$KS" -storepass android -keypass android -alias androiddebugkey \
         -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 fi
-"$BT/apksigner" sign --ks "$KS" --ks-pass pass:android --out NavICSkyView.apk build/aligned.apk
+"$BT/apksigner" sign --ks "$KS" --ks-pass pass:android --out NavICSignals.apk build/aligned.apk
 
 # The APK is published to GitHub Releases, not hosted locally on the website.
-echo "==> SUCCESS: Built $(pwd)/NavICSkyView.apk"
+echo "==> SUCCESS: Built $(pwd)/NavICSignals.apk"
