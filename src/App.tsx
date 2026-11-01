@@ -23,7 +23,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#050814] text-slate-100 selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen flex flex-col bg-[#02040b] text-slate-100 selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden w-full max-w-full">
       {/* Top sticky navigation */}
       <Header
         onTestClick={scrollToTop}

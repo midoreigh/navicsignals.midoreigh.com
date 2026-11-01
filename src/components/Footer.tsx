@@ -3,7 +3,7 @@ import { Satellite, Shield, ExternalLink, Heart, Radio, Globe } from 'lucide-rea
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-slate-800/80 bg-[#030611] text-slate-400 text-xs py-14">
+    <footer className="border-t border-slate-800/80 bg-[#02040b] text-slate-400 text-xs py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
           

@@ -87,7 +87,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
         <div className="absolute top-10 right-0 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-emerald-950/20 blur-[100px] rounded-full" />
         <div className="absolute bottom-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-emerald-950/10 blur-[110px] rounded-full" />
         {/* Bottom atmospheric fade seamlessly blending deep space into the next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#050814]/70 to-[#050814] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#02040b]/70 to-[#02040b] pointer-events-none" />
         
         {/* Authentic Deep-Space Starfield */}
         <svg 
