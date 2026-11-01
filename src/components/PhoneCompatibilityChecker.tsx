@@ -70,52 +70,56 @@ export const PhoneCompatibilityChecker: React.FC = () => {
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1 w-full min-w-0">
-            {/* Brand Filter - Clean smooth scroll with breathing room and no scrollbar touching buttons */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-0.5 w-full min-w-0 touch-pan-x">
-              <span className="text-[11px] text-slate-400 mr-1 font-mono shrink-0">Brand:</span>
-              {brands.map(brand => (
-                <button
-                  key={brand}
-                  onClick={() => setSelectedBrand(brand)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-                    selectedBrand === brand
-                      ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/20'
-                      : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700'
-                  }`}
-                >
-                  {brand}
-                </button>
-              ))}
-            </div>
+          {/* Brand Filter - Full width row so desktop users see every brand in 1 click */}
+          <div className="flex flex-wrap items-center gap-1.5 w-full pt-1">
+            <span className="text-[11px] text-slate-400 mr-1 font-mono shrink-0">Brand:</span>
+            {brands.map(brand => (
+              <button
+                key={brand}
+                onClick={() => setSelectedBrand(brand)}
+                className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap ${
+                  selectedBrand === brand
+                    ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/20'
+                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700'
+                }`}
+              >
+                {brand}
+              </button>
+            ))}
+          </div>
 
-            {/* Support Filter */}
-            <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto py-2">
+          {/* Sub-bar: Status Filter + Results Counter */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2 border-t border-slate-800/80">
+            <div className="flex items-center gap-1.5">
               <span className="text-[11px] text-slate-400 mr-1 font-mono">Status:</span>
               <button
                 onClick={() => setFilterSupport('All')}
-                className={`px-2 py-0.5 rounded-lg text-xs font-medium cursor-pointer ${
-                  filterSupport === 'All' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'
+                className={`px-2.5 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+                  filterSupport === 'All' ? 'bg-slate-700 text-white font-semibold' : 'text-slate-400 hover:text-white border border-transparent'
                 }`}
               >
                 All
               </button>
               <button
                 onClick={() => setFilterSupport('Supported')}
-                className={`px-2 py-0.5 rounded-lg text-xs font-medium cursor-pointer ${
-                  filterSupport === 'Supported' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-slate-400 hover:text-white'
+                className={`px-2.5 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+                  filterSupport === 'Supported' 
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold' 
+                    : 'text-slate-400 hover:text-white border border-transparent'
                 }`}
               >
                 NavIC Supported
               </button>
             </div>
-          </div>
-        </div>
 
-        {/* Results Count */}
-        <div className="max-w-4xl mx-auto mt-3 px-1 flex justify-between items-center text-[11px] text-slate-400 font-mono">
-          <span>Showing {visiblePhones.length} of {filteredPhones.length} matching models</span>
-          <span className="text-emerald-400">Tested Hardware</span>
+            <div className="flex items-center gap-3 text-[11px] text-slate-400 font-mono">
+              <span>Showing {visiblePhones.length} of {filteredPhones.length} matching models</span>
+              <span className="text-emerald-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                Tested Hardware
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Phone Grid */}
