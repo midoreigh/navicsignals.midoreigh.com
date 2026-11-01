@@ -250,7 +250,7 @@ export const OrbitVisualizer: React.FC = () => {
   ];
 
   const visibleGpsCount = [gps18, gps24, gps12, gps04].filter(s => s.isInSkyView).length;
-  const visibleNavicCount = 7; // All 7 NavIC satellites are ALWAYS visible!
+  const visibleNavicCount = 9; // All 9 NavIC satellites are ALWAYS visible!
 
   // Polar projection for Sky View (Observer looking up from India)
   // Center: (160, 160), Radius: 135
@@ -725,7 +725,7 @@ export const OrbitVisualizer: React.FC = () => {
 
                   {/* Map View Legend */}
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] text-slate-400 font-mono px-2 py-1 rounded bg-slate-950/80 border border-slate-800">
-                    <span className="text-orange-400">● 3 GEO (Stationary) + 4 GSO (Figure-8)</span>
+                    <span className="text-orange-400">● 3 GEO (Stationary) + 6 GSO (Figure-8)</span>
                     <span className="text-sky-400">● GPS (Circumnavigating Earth every 12h)</span>
                   </div>
                 </div>
@@ -753,7 +753,7 @@ export const OrbitVisualizer: React.FC = () => {
                       <span>🇮🇳</span>
                       <span>NavIC (ISRO)</span>
                     </span>
-                    <span className="font-mono text-emerald-400">{visibleNavicCount}/7 Visible</span>
+                    <span className="font-mono text-emerald-400">{visibleNavicCount}/9 Visible</span>
                   </div>
                   <div className="mt-1 text-[11px] text-slate-300">
                     Status: <strong className="text-white">100% Continuous Zenith Lock</strong>
@@ -868,7 +868,7 @@ export const OrbitVisualizer: React.FC = () => {
             <div className="flex items-start justify-between">
               <div>
                 <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                  4 Satellites in Figure-8
+                  6 Satellites in Figure-8
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-white mt-2">
                   Geosynchronous Orbits (GSO)
@@ -880,7 +880,7 @@ export const OrbitVisualizer: React.FC = () => {
             </div>
 
             <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Inclined at <strong className="text-sky-300">29° to the equatorial plane</strong>. From the ground, they trace a gentle figure-8 ground track (analemma) over 55° E and 111.75° E, providing continuous geometric diversity and near-zenith line of sight.
+              Inclined at <strong className="text-sky-300">29° to the equatorial plane</strong>. From the ground, they trace gentle figure-8 ground tracks (analemma) over 55° E and 111.75° E, providing continuous geometric diversity and near-zenith line of sight.
             </p>
 
             <div className="mt-4 space-y-2 text-xs font-mono">
@@ -893,8 +893,8 @@ export const OrbitVisualizer: React.FC = () => {
                 <span className="text-sky-300 text-[11px] sm:text-xs">111.75° E Longitude (29° Inclination • Figure-8)</span>
               </div>
               <div className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <span className="text-white font-bold">NVS-01 (Gen-2)</span>
-                <span className="text-emerald-400 text-[11px] sm:text-xs">55° E Slot (L1 Civilian + Rubidium Atomic Clock)</span>
+                <span className="text-white font-bold">NVS-01 &amp; NVS-02 / 03</span>
+                <span className="text-emerald-400 text-[11px] sm:text-xs">Next-Gen Slots (L1 Civilian + Rubidium Clocks)</span>
               </div>
             </div>
           </div>
@@ -921,9 +921,9 @@ export const OrbitVisualizer: React.FC = () => {
                 </p>
               </div>
               <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                <div className="font-bold text-sky-300 mb-1">Guaranteed 7-Satellite Fix</div>
+                <div className="font-bold text-sky-300 mb-1">Guaranteed 9-Satellite Coverage</div>
                 <p className="text-slate-400 text-[11px] leading-relaxed">
-                  While foreign constellations require 24–32 satellites because they circle the globe, ISRO achieves continuous regional coverage with just 7 spacecraft.
+                  While foreign constellations require 24–32 satellites because they circle the globe, ISRO achieves continuous regional coverage with its dedicated 9-satellite fleet.
                 </p>
               </div>
             </div>

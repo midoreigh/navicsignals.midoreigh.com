@@ -781,7 +781,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="• NavIC [IND] (India / ISRO) — 8 Regional Birds (GEO/GSO)\n• GPS [USA] (USA / Space Force) — 31 Global MEO Satellites\n• Galileo [EUR] (Europe / ESA) — 26 High-Precision Satellites\n• BeiDou [CHN] (China / CNSA) — 45 Multi-Orbit Satellites\n• GLONASS [RUS] (Russia / Roscosmos) — 24 Satellites\n• QZSS [JPN] (Japan / JAXA) — 4 Asia-Pacific Satellites"
+                        android:text="• NavIC [IND] (India / ISRO) — 9 Regional Satellites (GEO/GSO)\n• GPS [USA] (USA / Space Force) — 31 Global MEO Satellites\n• Galileo [EUR] (Europe / ESA) — 26 High-Precision Satellites\n• BeiDou [CHN] (China / CNSA) — 45 Multi-Orbit Satellites\n• GLONASS [RUS] (Russia / Roscosmos) — 24 Satellites\n• QZSS [JPN] (Japan / JAXA) — 4 Asia-Pacific Satellites"
                         android:textColor="#CBD5E1"
                         android:textSize="11sp"
                         android:lineSpacingExtra="3dp" />

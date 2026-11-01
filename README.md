@@ -12,7 +12,7 @@ Android Release: [GitHub Releases](https://github.com/midoreigh/navicsignals.mid
 Global Navigation Satellite Systems (GNSS) like GPS 🇺🇸, Galileo 🇪🇺, BeiDou 🇨🇳, and GLONASS 🇷🇺 rely on Medium Earth Orbit (MEO) constellations (~20,000 km altitude) that continuously transit across the sky. In dense metropolitan environments, deep valleys, and urban canyons, tall buildings frequently obstruct low-elevation MEO satellites, causing multipath signal bouncing and loss of position lock.
 
 **NavIC** takes a fundamentally different architectural approach tailored for South Asia:
-- **7–8 Satellites in High Geostationary (GEO) and Geosynchronous (GSO) Orbits** (~35,786 km altitude).
+- **9 Satellites in High Geostationary (GEO) and Geosynchronous (GSO) Orbits** (~35,786 km altitude).
 - **Perpetual High Zenith Geometry**: Because the satellites are parked over the Indian Ocean longitude belt (32.5°E to 131.5°E), several NavIC satellites remain directly overhead (high elevation angles $>60^\circ$ to $80^\circ$) across the Indian subcontinent 24 hours a day, 365 days a year.
 - **Urban Canyon Resilience**: Direct overhead line-of-sight clears high-rise buildings and narrow street corridors, dramatically reducing multipath reflection errors.
 - **Dual-Band Transmission**: NavIC operates across **L5 (1176.45 MHz)**, **S-band (2492.028 MHz)**, and modernized **L1 (1575.42 MHz)**.

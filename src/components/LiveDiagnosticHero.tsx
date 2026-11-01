@@ -455,8 +455,8 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
           <div className="lg:col-span-6 order-2 lg:order-3 z-10">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center lg:text-left h-full">
               <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-center h-full">
-                <div className="text-sm sm:text-lg font-extrabold text-orange-400 font-mono">7 Satellites</div>
-                <div className="text-[10px] text-slate-400">3 GEO + 4 GSO Baseline</div>
+                <div className="text-sm sm:text-lg font-extrabold text-orange-400 font-mono">9 Satellites</div>
+                <div className="text-[10px] text-slate-400">3 GEO + 6 GSO Fleet</div>
               </div>
               <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-center h-full">
                 <div className="text-sm sm:text-lg font-extrabold text-sky-400 font-mono truncate">1176.45 MHz</div>

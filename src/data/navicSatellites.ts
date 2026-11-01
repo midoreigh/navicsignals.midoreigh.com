@@ -38,7 +38,7 @@ export const CONSTELLATION_METADATA: Record<string, ConstellationInfo> = {
     code: 'IRNSS',
     operator: 'ISRO (Indian Space Research Organisation)',
     orbitAltitude: '35,786 km (GEO & GSO)',
-    totalSatellites: 8,
+    totalSatellites: 9,
     bands: ['L5 (1176.45 MHz)', 'S-band (2492.028 MHz)', 'L1 (1575.42 MHz)'],
     color: '#FF9933',
     accentColor: '#138808',
@@ -230,7 +230,7 @@ export const NAVIC_SATELLITES: Satellite[] = [
     launchYear: 2018,
     atomicClock: 'Rubidium',
     orbitalLocation: '55° E (29° Inclination)',
-    notes: 'High-availability operational bird covering the subcontinent',
+    notes: 'High-availability operational satellite covering the subcontinent',
   },
   {
     id: 'nvs-01',
@@ -288,9 +288,9 @@ export const NAVIC_SATELLITES: Satellite[] = [
 // Official PRN / SVID Mapping Table for Android GnssStatus & NMEA Receivers
 export const NAVIC_PRN_MAP: Record<number, { name: string; type: string; launchYear: number; status: string; notes: string }> = {
   1: { name: 'IRNSS-1A', type: 'GSO (55° E)', launchYear: 2013, status: 'Messaging Only', notes: 'Atomic clocks degraded; repurposed for emergency messaging' },
-  2: { name: 'IRNSS-1B', type: 'GSO (55° E)', launchYear: 2014, status: 'Active', notes: 'First-gen GSO bird with Rubidium clock' },
+  2: { name: 'IRNSS-1B', type: 'GSO (55° E)', launchYear: 2014, status: 'Active', notes: 'First-gen GSO satellite with Rubidium clock' },
   3: { name: 'IRNSS-1C', type: 'GEO (83° E)', launchYear: 2014, status: 'Active', notes: 'Central meridian stationary zenith satellite' },
-  4: { name: 'IRNSS-1D', type: 'GSO (111.75° E)', launchYear: 2015, status: 'Active', notes: 'Eastern GSO inclined bird' },
+  4: { name: 'IRNSS-1D', type: 'GSO (111.75° E)', launchYear: 2015, status: 'Active', notes: 'Eastern GSO inclined satellite' },
   5: { name: 'IRNSS-1E', type: 'GSO (111.75° E)', launchYear: 2016, status: 'Active / Degraded', notes: 'Partial clock redundancy' },
   6: { name: 'IRNSS-1F', type: 'GEO (32.5° E)', launchYear: 2016, status: 'Active', notes: 'Western geostationary anchor over Arabian Sea' },
   7: { name: 'IRNSS-1G', type: 'GEO (129.5° E)', launchYear: 2016, status: 'Active', notes: 'Eastern geostationary anchor over Bay of Bengal' },

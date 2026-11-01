@@ -224,7 +224,7 @@ export const HowPhonesCombineGnss: React.FC = () => {
                   <div className="mt-1.5 text-xs sm:text-sm font-bold text-white truncate">{info.name}</div>
                   <div className="text-[10px] text-slate-400 truncate">{info.country}</div>
                   <div className="mt-1 text-[10px] font-mono text-slate-400">
-                    {info.totalSatellites} Birds
+                    {info.totalSatellites} Satellites
                   </div>
                 </button>
               );
