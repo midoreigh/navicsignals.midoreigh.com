@@ -110,9 +110,9 @@ export const HowPhonesCombineGnss: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
-                    <span className="font-bold text-amber-300 block mb-1">The "Xerox" Effect</span>
+                    <span className="font-bold text-amber-300 block mb-1">The "Bisleri" Effect</span>
                     <p className="text-slate-400 text-[11px] leading-relaxed">
-                      Just like how in India we say <strong>"Xerox"</strong> for photocopying or <strong>"Bisleri"</strong> for packaged water, people casually say <strong>"GPS"</strong> for location. But GPS is actually only the <strong>American government's system</strong> (NAVSTAR).
+                      Just like how in India we say <strong>"Bisleri"</strong> for packaged water, <strong>"Surf"</strong> for detergent, or <strong>"Colgate"</strong> for toothpaste, people casually say <strong>"GPS"</strong> for location. But GPS is actually only the <strong>American government's system</strong> (NAVSTAR).
                     </p>
                   </div>
 

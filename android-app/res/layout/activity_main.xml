@@ -741,7 +741,7 @@
                         android:lineSpacingExtra="3dp"
                         android:layout_marginBottom="10dp" />
 
-                    <!-- The Xerox Effect box -->
+                    <!-- The Bisleri Effect box -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -753,7 +753,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="The &quot;Xerox&quot; Effect"
+                            android:text="The &quot;Bisleri&quot; Effect"
                             android:textColor="@color/navic_saffron"
                             android:textStyle="bold"
                             android:textSize="11sp"
@@ -762,11 +762,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Just as in India we say &quot;Xerox&quot; for photocopies or &quot;Bisleri&quot; for packaged water, people casually say &quot;GPS&quot; for satellite location. But GPS (NAVSTAR) is only America's military system. Your smartphone combines 6 international constellations simultaneously."
+                            android:text="Just as in India we say &quot;Bisleri&quot; for packaged water, &quot;Surf&quot; for detergent, or &quot;Colgate&quot; for toothpaste, people casually say &quot;GPS&quot; for satellite location. But GPS (NAVSTAR) is only America's military system. Your smartphone combines 6 international constellations simultaneously."
                             android:textColor="#CBD5E1"
-                            android:textSize="11sp"
-                            android:lineSpacingExtra="2dp" />
-                            android:textColor="@color/text_secondary"
                             android:textSize="11sp"
                             android:lineSpacingExtra="2dp" />
                     </LinearLayout>
