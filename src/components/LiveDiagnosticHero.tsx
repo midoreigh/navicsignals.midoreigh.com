@@ -436,24 +436,50 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
               </svg>
             </div>
 
-            {/* Bottom Comparison Telemetry Strip (Subtle & Unboxed) */}
-            <div className="mt-3 w-full max-w-[560px] grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
-              <div className="p-2 rounded-xl bg-orange-500/10 border border-orange-500/25 flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-orange-500 shrink-0"></span>
-                  <span className="font-bold text-orange-400">🇮🇳 NavIC (35,786 km)</span>
+            {/* Bottom Comparison Telemetry Cards (Structured & Cleanly Spaced) */}
+            <div className="mt-3 w-full max-w-[600px] grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {/* NavIC Telemetry Card */}
+              <div className="p-2.5 sm:p-3 rounded-xl bg-orange-500/10 border border-orange-500/30 flex flex-col gap-1.5 shadow-lg shadow-orange-500/5">
+                <div className="flex items-center justify-between font-mono">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-orange-400">
+                    <span className="w-2 h-2 rounded-full bg-orange-500 shrink-0"></span>
+                    <span>🇮🇳 NavIC</span>
+                    <span className="text-[10px] font-normal text-slate-400">35,786 km</span>
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap">
+                    Zenith Lock
+                  </span>
                 </div>
-                <span className="text-emerald-400 font-bold">Stationary Zenith Lock</span>
+                <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-0.5 border-t border-orange-500/15">
+                  <span>Speed: <strong className="text-slate-200">0.0 km/h</strong></span>
+                  <span className="text-emerald-400 font-semibold">Stationary (79° Fixed)</span>
+                </div>
               </div>
 
-              <div className={`p-2 rounded-xl border flex items-center justify-between transition-colors ${isOcculted ? 'bg-slate-900/60 border-slate-700/60' : 'bg-sky-500/10 border-sky-500/25'}`}>
-                <div className="flex items-center gap-1.5">
-                  <span className={`w-2 h-2 rounded-full shrink-0 ${isOcculted ? 'bg-slate-500' : 'bg-sky-400 animate-pulse'}`}></span>
-                  <span className={`font-bold ${isOcculted ? 'text-slate-400' : 'text-sky-400'}`}>🇺🇸 GPS (20,200 km)</span>
+              {/* GPS Telemetry Card */}
+              <div className={`p-2.5 sm:p-3 rounded-xl border flex flex-col gap-1.5 transition-colors shadow-lg ${
+                isOcculted ? 'bg-slate-900/60 border-slate-700/60' : 'bg-sky-500/10 border-sky-500/30 shadow-sky-500/5'
+              }`}>
+                <div className="flex items-center justify-between font-mono">
+                  <div className="flex items-center gap-1.5 text-xs font-bold">
+                    <span className={`w-2 h-2 rounded-full shrink-0 ${isOcculted ? 'bg-slate-500' : 'bg-sky-400 animate-pulse'}`}></span>
+                    <span className={isOcculted ? 'text-slate-400' : 'text-sky-400'}>🇺🇸 GPS</span>
+                    <span className="text-[10px] font-normal text-slate-400">20,200 km</span>
+                  </div>
+                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
+                    isOcculted 
+                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' 
+                      : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
+                  }`}>
+                    {isOcculted ? 'Behind Earth' : 'MEO Flyover'}
+                  </span>
                 </div>
-                <span className={`font-bold text-[10.5px] ${isOcculted ? 'text-amber-400' : 'text-sky-300'}`}>
-                  {isOcculted ? 'Occulted (Behind Earth)' : 'Fast Flyover (Sets in ~3h)'}
-                </span>
+                <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-0.5 border-t border-slate-800">
+                  <span>Speed: <strong className={isOcculted ? 'text-slate-400' : 'text-sky-300'}>3.87 km/s</strong></span>
+                  <span className={isOcculted ? 'text-amber-400 font-semibold' : 'text-sky-300'}>
+                    {isOcculted ? 'Occulted by Earth' : 'Sets in ~3h'}
+                  </span>
+                </div>
               </div>
             </div>
 
