@@ -38,7 +38,7 @@ export const App: React.FC = () => {
           onGetApp={scrollToApp}
         />
 
-        {/* 2. Interactive Guide: How Modern Phones Combine 6 GNSS Constellations & Urban Canyon Sim */}
+        {/* 2. How NavIC Works: GNSS Fundamentals, NavIC Regional Architecture & Urban Canyon Sim */}
         <HowPhonesCombineGnss />
 
         {/* 3. Smartphone Hardware Compatibility Database & Search */}

@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="hover:text-sky-400 transition-colors flex items-center gap-1.5"
             >
               <Compass className="w-4 h-4 text-sky-400" />
-              How "GPS" Combines
+              How NavIC Works
             </a>
             <button
               onClick={onCheckPhone}

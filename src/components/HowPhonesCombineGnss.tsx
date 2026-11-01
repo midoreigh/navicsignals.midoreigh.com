@@ -77,52 +77,72 @@ export const HowPhonesCombineGnss: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20 mb-3">
             <Compass className="w-3.5 h-3.5 text-sky-400" />
-            <span>The Science of Smartphone Positioning</span>
+            <span>The Science of Satellite Navigation</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            How Your Phone Blends Signals from 6 Constellations
+            How NavIC Works
           </h2>
           <p className="mt-3 text-slate-300 text-xs sm:text-base leading-relaxed px-1">
-            Your phone does not rely on a single constellation. Inside the modem, an advanced positioning engine fuses signals from dozens of satellites across six nations simultaneously.
+            Global positioning is built on atomic clock trilateration. Here is how worldwide GNSS operates — and how India's NavIC constellation anchors high-elevation coverage right above you.
           </p>
         </div>
 
-        {/* WHAT IS GNSS? DEDICATED EXPLAINER BOX */}
+        {/* HOW GNSS & NAVIC WORK EXPLAINER BOX */}
         <div className="mt-8 max-w-4xl mx-auto">
-          <div className="rounded-2xl p-4 sm:p-6 bg-gradient-to-br from-sky-950/40 via-slate-900/90 to-purple-950/30 border border-sky-400/30 shadow-xl">
+          <div className="rounded-2xl p-4 sm:p-6 bg-gradient-to-br from-sky-950/40 via-slate-900/90 to-purple-950/30 border border-sky-400/30 shadow-xl space-y-4">
+            {/* Top row: What is GNSS + Core Physics */}
             <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
               <div className="p-2.5 rounded-xl bg-sky-500/20 border border-sky-400/30 text-sky-300 shrink-0">
                 <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div className="space-y-2.5 w-full">
+              <div className="space-y-2 w-full">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-sm sm:text-base font-extrabold text-white">
-                    What is GNSS?
+                    How GNSS Works (The Global Standard)
                   </h3>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                    Core Concept
+                    Core Physics
                   </span>
                 </div>
 
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  <strong className="text-sky-300">GNSS</strong> (<strong className="text-white">Global Navigation Satellite System</strong>) is the universal engineering term for all satellite-based positioning networks orbiting Earth.
+                  <strong className="text-sky-300">GNSS</strong> (<strong className="text-white">Global Navigation Satellite System</strong>) is the universal engineering standard for space-based positioning. Satellites carry onboard atomic clocks and broadcast timed radio signals at the speed of light. Your phone's GNSS receiver measures nanosecond arrival delays (<span className="text-sky-300 font-mono">Δt</span>) from at least 4 satellites to calculate your precise 3D latitude, longitude, altitude, and clock bias through <strong>geometric trilateration</strong>.
                 </p>
+              </div>
+            </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                  <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
-                    <span className="font-bold text-amber-300 block mb-1">The "Bisleri" Effect</span>
-                    <p className="text-slate-400 text-[11px] leading-relaxed">
-                      Just like how in India we say <strong>"Bisleri"</strong> for packaged water, <strong>"Surf"</strong> for detergent, or <strong>"Colgate"</strong> for toothpaste, people casually say <strong>"GPS"</strong> for location. But GPS is actually only the <strong>American government's system</strong> (NAVSTAR).
-                    </p>
-                  </div>
+            {/* Middle row: How NavIC Fits Into That Picture */}
+            <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-orange-500/10 via-slate-950/80 to-emerald-500/10 border border-orange-500/30">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-base sm:text-lg">🇮🇳</span>
+                <h4 className="text-xs sm:text-sm font-bold text-orange-400">
+                  Where NavIC Fits Into the Picture
+                </h4>
+                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30 ml-auto">
+                  Overhead Anchor
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Global constellations like GPS (USA), Galileo (EU), and BeiDou (China) operate in moving Medium Earth Orbits (~20,000 km), constantly rising and setting at low horizon angles (20°–35°). 
+                In contrast, ISRO parked NavIC in <strong className="text-white">Geostationary (GEO) and Geosynchronous (GSO) orbits at 35,786 km</strong> dedicated entirely to the Indian subcontinent. Because their orbit matches Earth's rotation, several NavIC satellites <strong className="text-emerald-300">hover permanently overhead at 70° to 85° zenith</strong>. 
+                Your smartphone modem fuses NavIC's overhead anchor with moving GPS satellites to clear urban high-rises and maintain unbroken lane-level accuracy.
+              </p>
+            </div>
 
-                  <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
-                    <span className="font-bold text-emerald-300 block mb-1">Modern Smartphone GNSS</span>
-                    <p className="text-slate-400 text-[11px] leading-relaxed">
-                      Your smartphone doesn't have a "GPS chip" — it has a <strong>multi-constellation GNSS modem</strong> that locks onto GPS (USA), NavIC (India), Galileo (EU), and BeiDou (China) at the exact same moment.
-                    </p>
-                  </div>
-                </div>
+            {/* Bottom 2 Cards: The Bisleri Effect & Smartphone Multi-Constellation Modem */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs pt-1">
+              <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+                <span className="font-bold text-amber-300 block mb-1">The "Bisleri" Effect</span>
+                <p className="text-slate-400 text-[11px] leading-relaxed">
+                  Just like how in India we say <strong>"Bisleri"</strong> for packaged water, <strong>"Surf"</strong> for detergent, or <strong>"Colgate"</strong> for toothpaste, people casually say <strong>"GPS"</strong> for location. But GPS is actually only the <strong>American government's system</strong> (NAVSTAR).
+                </p>
+              </div>
+
+              <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+                <span className="font-bold text-emerald-300 block mb-1">Modern Smartphone GNSS</span>
+                <p className="text-slate-400 text-[11px] leading-relaxed">
+                  Your smartphone doesn't have a "GPS chip" — it has a <strong>multi-constellation GNSS modem</strong> that locks onto GPS (USA), NavIC (India), Galileo (EU), and BeiDou (China) at the exact same moment.
+                </p>
               </div>
             </div>
           </div>
