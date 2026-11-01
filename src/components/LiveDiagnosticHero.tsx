@@ -6,7 +6,7 @@ import {
   Radio
 } from 'lucide-react';
 import { WORLD_LAND_PATH } from '../data/earthGlobePaths';
-import { INDIA_STATES } from '../data/indiaMapPaths';
+import { INDIA_OUTLINE_PATH } from '../data/indiaMapPaths';
 
 interface LiveDiagnosticHeroProps {
   onCheckPhone: () => void;
@@ -47,10 +47,10 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
   const cosTilt = Math.cos(tiltRad);
   const sinTilt = Math.sin(tiltRad);
 
-  // Authentic Survey of India Map Scale & Alignment on Hero Globe
-  const indiaScale = 0.265;
-  const indiaTx = cx - 275 * indiaScale;
-  const indiaTy = 235 - 340 * indiaScale;
+  // Authentic Survey of India Map Scale & Alignment on Hero Globe (Clean outline without state borders)
+  const indiaScale = 0.112;
+  const indiaTx = cx - 740 * indiaScale;
+  const indiaTy = 240 - 855 * indiaScale;
 
   // Calculate GPS satellite position along the inclined ellipse
   const alpha = 2 * Math.PI * orbitProgress;
@@ -296,27 +296,19 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   INDIAN OCEAN
                 </text>
 
-                {/* 6. INDIA: Authentic Official Survey of India (SOI) Compliant Map with Cyber Elevation & Glow */}
+                {/* 6. INDIA: Authentic Official Survey of India (SOI) Compliant Silhouette (Clean Outline, No State Borders) */}
                 <g transform={`translate(${indiaTx}, ${indiaTy}) scale(${indiaScale})`}>
                   {/* Outer Glow Aura */}
-                  <g fill="#10b981" opacity="0.3" filter="url(#telemetryBeaconGlow)">
-                    {INDIA_STATES.map((state) => (
-                      <path key={`glow-${state.id}`} d={state.d} />
-                    ))}
-                  </g>
-                  {/* Topographic Cyber Landmass Fill & Administrative State Boundaries */}
-                  <g fill="#06281e" stroke="#34d399" strokeWidth="1.1" strokeLinejoin="round" strokeLinecap="round">
-                    {INDIA_STATES.map((state) => (
-                      <path key={state.id} d={state.d} id={`state-${state.id}`} />
-                    ))}
-                  </g>
+                  <path d={INDIA_OUTLINE_PATH} fill="none" stroke="#10b981" strokeWidth="14" opacity="0.25" filter="url(#telemetryBeaconGlow)" />
+                  {/* Topographic Cyber Landmass Fill */}
+                  <path d={INDIA_OUTLINE_PATH} fill="#06281e" stroke="#34d399" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
                 </g>
 
-                {/* Sri Lanka Island across Palk Strait */}
-                <ellipse cx="268" cy="330" rx="5.5" ry="9" fill="#06281e" stroke="#34d399" strokeWidth="1.2" transform="rotate(10 268 330)" />
+                {/* Sri Lanka Island: Muted Continental Palette (NOT Highlighted Green) */}
+                <ellipse cx="268" cy="332" rx="5.5" ry="9" fill="#111c2e" stroke="#1e293b" strokeWidth="0.8" transform="rotate(10 268 332)" />
 
                 {/* Active Smartphone Receiver Beacon in Central India */}
-                <g transform="translate(262, 248)">
+                <g transform="translate(264, 246)">
                   <circle r="14" fill="none" stroke="#f97316" strokeWidth="1.2" opacity="0.3" className="animate-ping" />
                   <circle r="7" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
                   <circle r="3" fill="#ffedd5" stroke="#f97316" strokeWidth="1.5" />
