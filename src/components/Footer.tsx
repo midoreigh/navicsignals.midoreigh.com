@@ -31,10 +31,10 @@ export const Footer: React.FC = () => {
               NavIC Space Segment
             </div>
             <ul className="space-y-1.5 text-[11px]">
-              <li><span className="text-slate-300">Constellation:</span> 9 Operational Satellites (ISRO Fleet)</li>
-              <li><span className="text-slate-300">Orbits:</span> 3 GEO (35,786 km) + 6 GSO (29° Inc.)</li>
+              <li><span className="text-slate-300">Constellation:</span> 10 Satellites in Orbit (IRNSS &amp; NVS Fleet)</li>
+              <li><span className="text-slate-300">Orbits:</span> 3 GEO (35,786 km) + 7 GSO (29° Inc.)</li>
               <li><span className="text-slate-300">Civilian Frequencies:</span> L5 (1176.45 MHz), S-band, L1</li>
-              <li><span className="text-slate-300">Atomic Clocks:</span> Indigenous Rubidium & Space-grade PHM</li>
+              <li><span className="text-slate-300">Atomic Clocks:</span> Indigenous Rubidium &amp; Space-grade PHM</li>
             </ul>
           </div>
 
@@ -83,7 +83,7 @@ export const Footer: React.FC = () => {
           </div>
           <div className="flex items-center gap-3">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>All 9 NavIC satellites operational</span>
+            <span>All 10 NavIC satellites in orbit</span>
           </div>
         </div>
       </div>

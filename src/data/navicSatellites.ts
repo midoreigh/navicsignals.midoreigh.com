@@ -38,7 +38,7 @@ export const CONSTELLATION_METADATA: Record<string, ConstellationInfo> = {
     code: 'IRNSS',
     operator: 'ISRO (Indian Space Research Organisation)',
     orbitAltitude: '35,786 km (GEO & GSO)',
-    totalSatellites: 9,
+    totalSatellites: 10,
     bands: ['L5 (1176.45 MHz)', 'S-band (2492.028 MHz)', 'L1 (1575.42 MHz)'],
     color: '#FF9933',
     accentColor: '#138808',
@@ -114,6 +114,23 @@ export const CONSTELLATION_METADATA: Record<string, ConstellationInfo> = {
 // Actual NavIC / IRNSS satellites launched by ISRO
 export const NAVIC_SATELLITES: Satellite[] = [
   {
+    id: 'navic-1a',
+    name: 'IRNSS-1A',
+    prn: 1,
+    constellation: 'NavIC',
+    orbitType: 'GSO',
+    frequencies: ['S-band (2492.03 MHz)'],
+    azimuth: 146,
+    elevation: 66,
+    cn0DbHz: 38.2,
+    usedInFix: false,
+    status: 'Healthy',
+    launchYear: 2013,
+    atomicClock: 'Rubidium',
+    orbitalLocation: '55° E (29° Inclination)',
+    notes: 'In orbit; repurposed by ISRO for emergency short messaging service broadcasts',
+  },
+  {
     id: 'navic-1b',
     name: 'IRNSS-1B',
     prn: 2,
@@ -157,12 +174,12 @@ export const NAVIC_SATELLITES: Satellite[] = [
     azimuth: 114,
     elevation: 59,
     cn0DbHz: 41.2,
-    usedInFix: true,
+    usedInFix: false,
     status: 'Healthy',
     launchYear: 2015,
     atomicClock: 'Rubidium',
-    orbitalLocation: '111.75° E (29° Inclination)',
-    notes: 'Geosynchronous eastern slot serving Bay of Bengal and East India',
+    orbitalLocation: '111.75° E (Decommissioned)',
+    notes: 'Decommissioned spacecraft originally stationed at 111.75° E',
   },
   {
     id: 'navic-1e',
@@ -287,17 +304,17 @@ export const NAVIC_SATELLITES: Satellite[] = [
 
 // Official PRN / SVID Mapping Table for Android GnssStatus & NMEA Receivers
 export const NAVIC_PRN_MAP: Record<number, { name: string; type: string; launchYear: number; status: string; notes: string }> = {
-  1: { name: 'IRNSS-1A', type: 'GSO (55° E)', launchYear: 2013, status: 'Messaging Only', notes: 'Atomic clocks degraded; repurposed for emergency messaging' },
-  2: { name: 'IRNSS-1B', type: 'GSO (55° E)', launchYear: 2014, status: 'Active', notes: 'First-gen GSO satellite with Rubidium clock' },
-  3: { name: 'IRNSS-1C', type: 'GEO (83° E)', launchYear: 2014, status: 'Active', notes: 'Central meridian stationary zenith satellite' },
-  4: { name: 'IRNSS-1D', type: 'GSO (111.75° E)', launchYear: 2015, status: 'Active', notes: 'Eastern GSO inclined satellite' },
-  5: { name: 'IRNSS-1E', type: 'GSO (111.75° E)', launchYear: 2016, status: 'Active / Degraded', notes: 'Partial clock redundancy' },
-  6: { name: 'IRNSS-1F', type: 'GEO (32.5° E)', launchYear: 2016, status: 'Active', notes: 'Western geostationary anchor over Arabian Sea' },
-  7: { name: 'IRNSS-1G', type: 'GEO (129.5° E)', launchYear: 2016, status: 'Active', notes: 'Eastern geostationary anchor over Bay of Bengal' },
-  9: { name: 'IRNSS-1I', type: 'GSO (55° E)', launchYear: 2018, status: 'Active', notes: 'Replacement operational spacecraft' },
-  10: { name: 'NVS-01', type: 'GSO (55° E)', launchYear: 2023, status: 'Active (Gen-2)', notes: 'First Gen-2 satellite with indigenous atomic clock and civilian L1 band' },
-  11: { name: 'NVS-02', type: 'GSO (111.75° E)', launchYear: 2025, status: 'In Orbit (Gen-2)', notes: 'Gen-2 spacecraft with L1 civilian signal' },
-  12: { name: 'NVS-03', type: 'GSO (55° E)', launchYear: 2026, status: 'Active (Gen-2)', notes: 'Launched October 2026 to bolster standalone 3D positioning' },
+  1: { name: 'IRNSS-1A', type: 'GSO (55° E)', launchYear: 2013, status: 'In Orbit (Messaging)', notes: 'Atomic clocks degraded; repurposed for emergency messaging' },
+  2: { name: 'IRNSS-1B', type: 'GSO (55° E)', launchYear: 2014, status: 'Active (Operational)', notes: 'First-gen GSO satellite with Rubidium clock' },
+  3: { name: 'IRNSS-1C', type: 'GEO (83° E)', launchYear: 2014, status: 'In Orbit (Messaging)', notes: 'Central meridian stationary zenith satellite' },
+  4: { name: 'IRNSS-1D', type: 'GSO (111.75° E)', launchYear: 2015, status: 'Decommissioned', notes: 'Decommissioned spacecraft originally stationed at 111.75° E' },
+  5: { name: 'IRNSS-1E', type: 'GSO (111.75° E)', launchYear: 2016, status: 'In Orbit (Messaging)', notes: 'Operating for short message service at 111.75° E' },
+  6: { name: 'IRNSS-1F', type: 'GEO (32.5° E)', launchYear: 2016, status: 'In Orbit (Messaging)', notes: 'Western geostationary anchor over Arabian Sea' },
+  7: { name: 'IRNSS-1G', type: 'GEO (129.5° E)', launchYear: 2016, status: 'In Orbit (Messaging)', notes: 'Eastern geostationary anchor over Bay of Bengal' },
+  9: { name: 'IRNSS-1I', type: 'GSO (55° E)', launchYear: 2018, status: 'Active (Operational)', notes: 'Operational spacecraft in 55° E inclined geosynchronous orbit' },
+  10: { name: 'NVS-01', type: 'GEO (129.5° E)', launchYear: 2023, status: 'Active (Gen-2)', notes: 'First Gen-2 satellite with indigenous atomic clock and civilian L1 band' },
+  11: { name: 'NVS-02', type: 'GSO (In Orbit)', launchYear: 2025, status: 'In Orbit (Gen-2)', notes: 'Second Gen-2 satellite in orbit, evaluating alternate mission profiles' },
+  12: { name: 'NVS-03', type: 'GSO (111.75° E)', launchYear: 2026, status: 'Active (Gen-2)', notes: 'Launched 30 October 2026 to bolster standalone 3D positioning' },
 };
 
 // Sample of other constellation satellites currently in view for multi-constellation comparison

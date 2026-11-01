@@ -147,18 +147,32 @@ export const OrbitVisualizer: React.FC = () => {
     statusLabel: 'Overhead Figure-8 Loop (60°–84°)',
   };
 
-  const navic1D: SatelliteOrbitState = {
-    id: 'irnss-1d',
-    name: 'IRNSS-1D',
+  const navic1A: SatelliteOrbitState = {
+    id: 'irnss-1a',
+    name: 'IRNSS-1A',
     constellation: 'NavIC',
     type: 'GSO',
     flag: '🇮🇳',
-    azimuth: 122 + 11 * Math.sin(2 * (theta + Math.PI / 2)),
-    elevation: 60 + 13 * Math.sin(theta + Math.PI / 2),
-    lat: 29 * Math.sin(theta + Math.PI / 2),
-    lon: 111.75 + 3.5 * Math.sin(2 * (theta + Math.PI / 2)),
+    azimuth: 150 + 10 * Math.sin(2 * (theta + 0.4)),
+    elevation: 66 + 12 * Math.sin(theta + 0.4),
+    lat: 29 * Math.sin(theta + 0.4),
+    lon: 55.0 + 3.5 * Math.sin(2 * (theta + 0.4)),
     isInSkyView: true,
-    statusLabel: 'Overhead Figure-8 Loop (47°–73°)',
+    statusLabel: 'Short-Message Service Figure-8 (54°–78°)',
+  };
+
+  const navic1E: SatelliteOrbitState = {
+    id: 'irnss-1e',
+    name: 'IRNSS-1E',
+    constellation: 'NavIC',
+    type: 'GSO',
+    flag: '🇮🇳',
+    azimuth: 118 + 11 * Math.sin(2 * (theta + 1.5)),
+    elevation: 62 + 12 * Math.sin(theta + 1.5),
+    lat: 29 * Math.sin(theta + 1.5),
+    lon: 111.75 + 3.5 * Math.sin(2 * (theta + 1.5)),
+    isInSkyView: true,
+    statusLabel: 'Overhead Figure-8 Loop (50°–74°)',
   };
 
   const navicNVS01: SatelliteOrbitState = {
@@ -173,6 +187,34 @@ export const OrbitVisualizer: React.FC = () => {
     lon: 55.0 + 3.5 * Math.sin(2 * (theta + 0.8)),
     isInSkyView: true,
     statusLabel: 'L1+L5 Zenith Figure-8 (64°–86°)',
+  };
+
+  const navicNVS02: SatelliteOrbitState = {
+    id: 'nvs-02',
+    name: 'NVS-02 (Gen-2)',
+    constellation: 'NavIC',
+    type: 'GSO',
+    flag: '🇮🇳',
+    azimuth: 122 + 10 * Math.sin(2 * (theta + 2.6)),
+    elevation: 61 + 11 * Math.sin(theta + 2.6),
+    lat: 29 * Math.sin(theta + 2.6),
+    lon: 111.75 + 3.5 * Math.sin(2 * (theta + 2.6)),
+    isInSkyView: true,
+    statusLabel: 'In Orbit Second-Gen Slot (50°–72°)',
+  };
+
+  const navicNVS03: SatelliteOrbitState = {
+    id: 'nvs-03',
+    name: 'NVS-03 (Gen-2)',
+    constellation: 'NavIC',
+    type: 'GSO',
+    flag: '🇮🇳',
+    azimuth: 126 + 10 * Math.sin(2 * (theta + 4.2)),
+    elevation: 64 + 11 * Math.sin(theta + 4.2),
+    lat: 29 * Math.sin(theta + 4.2),
+    lon: 111.75 + 3.5 * Math.sin(2 * (theta + 4.2)),
+    isInSkyView: true,
+    statusLabel: 'Launched Oct 2026 • L1+L5 GSO Fix (53°–75°)',
   };
 
   // 3. GPS Satellites (Medium Earth Orbit, 20,200 km, ~12h Period, 55° Inclined)
@@ -239,10 +281,13 @@ export const OrbitVisualizer: React.FC = () => {
     navic1C,
     navic1F,
     navic1G,
+    navic1A,
     navic1B,
+    navic1E,
     navic1I,
-    navic1D,
     navicNVS01,
+    navicNVS02,
+    navicNVS03,
     gps18,
     gps24,
     gps12,
@@ -250,7 +295,7 @@ export const OrbitVisualizer: React.FC = () => {
   ];
 
   const visibleGpsCount = [gps18, gps24, gps12, gps04].filter(s => s.isInSkyView).length;
-  const visibleNavicCount = 9; // All 9 NavIC satellites are ALWAYS visible!
+  const visibleNavicCount = 10; // All 10 NavIC satellites in orbit are ALWAYS visible!
 
   // Polar projection for Sky View (Observer looking up from India)
   // Center: (160, 160), Radius: 135
@@ -725,7 +770,7 @@ export const OrbitVisualizer: React.FC = () => {
 
                   {/* Map View Legend */}
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] text-slate-400 font-mono px-2 py-1 rounded bg-slate-950/80 border border-slate-800">
-                    <span className="text-orange-400">● 3 GEO (Stationary) + 6 GSO (Figure-8)</span>
+                    <span className="text-orange-400">● 3 GEO (Stationary) + 7 GSO (Figure-8)</span>
                     <span className="text-sky-400">● GPS (Circumnavigating Earth every 12h)</span>
                   </div>
                 </div>
@@ -753,7 +798,7 @@ export const OrbitVisualizer: React.FC = () => {
                       <span>🇮🇳</span>
                       <span>NavIC (ISRO)</span>
                     </span>
-                    <span className="font-mono text-emerald-400">{visibleNavicCount}/9 Visible</span>
+                    <span className="font-mono text-emerald-400">{visibleNavicCount}/10 in Orbit</span>
                   </div>
                   <div className="mt-1 text-[11px] text-slate-300">
                     Status: <strong className="text-white">100% Continuous Zenith Lock</strong>
@@ -868,7 +913,7 @@ export const OrbitVisualizer: React.FC = () => {
             <div className="flex items-start justify-between">
               <div>
                 <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                  6 Satellites in Figure-8
+                  7 Satellites in Figure-8
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-white mt-2">
                   Geosynchronous Orbits (GSO)
@@ -885,16 +930,16 @@ export const OrbitVisualizer: React.FC = () => {
 
             <div className="mt-4 space-y-2 text-xs font-mono">
               <div className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <span className="text-white font-bold">IRNSS-1B &amp; 1I</span>
+                <span className="text-white font-bold">IRNSS-1A, 1B &amp; 1I</span>
                 <span className="text-sky-300 text-[11px] sm:text-xs">55° E Longitude (29° Inclination • Figure-8)</span>
               </div>
               <div className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <span className="text-white font-bold">IRNSS-1D &amp; 1E</span>
+                <span className="text-white font-bold">IRNSS-1E</span>
                 <span className="text-sky-300 text-[11px] sm:text-xs">111.75° E Longitude (29° Inclination • Figure-8)</span>
               </div>
               <div className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <span className="text-white font-bold">NVS-01 &amp; NVS-02 / 03</span>
-                <span className="text-emerald-400 text-[11px] sm:text-xs">Next-Gen Slots (L1 Civilian + Rubidium Clocks)</span>
+                <span className="text-white font-bold">NVS-01, NVS-02 &amp; NVS-03</span>
+                <span className="text-emerald-400 text-[11px] sm:text-xs">Next-Gen Fleet (Civilian L1 + Rubidium Clocks)</span>
               </div>
             </div>
           </div>
@@ -921,9 +966,9 @@ export const OrbitVisualizer: React.FC = () => {
                 </p>
               </div>
               <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                <div className="font-bold text-sky-300 mb-1">Guaranteed 9-Satellite Coverage</div>
+                <div className="font-bold text-sky-300 mb-1">Guaranteed 10-Satellite Fleet</div>
                 <p className="text-slate-400 text-[11px] leading-relaxed">
-                  While foreign constellations require 24–32 satellites because they circle the globe, ISRO achieves continuous regional coverage with its dedicated 9-satellite fleet.
+                  While foreign constellations require 24–32 satellites because they circle the globe, ISRO achieves continuous regional coverage with its dedicated 10-satellite fleet in orbit.
                 </p>
               </div>
             </div>

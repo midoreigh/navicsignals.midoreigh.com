@@ -781,7 +781,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="• NavIC [IND] (India / ISRO) — 9 Regional Satellites (GEO/GSO)\n• GPS [USA] (USA / Space Force) — 31 Global MEO Satellites\n• Galileo [EUR] (Europe / ESA) — 26 High-Precision Satellites\n• BeiDou [CHN] (China / CNSA) — 45 Multi-Orbit Satellites\n• GLONASS [RUS] (Russia / Roscosmos) — 24 Satellites\n• QZSS [JPN] (Japan / JAXA) — 4 Asia-Pacific Satellites"
+                        android:text="• NavIC [IND] (India / ISRO) — 10 Regional Satellites in Orbit (GEO/GSO)\n• GPS [USA] (USA / Space Force) — 31 Global MEO Satellites\n• Galileo [EUR] (Europe / ESA) — 26 High-Precision Satellites\n• BeiDou [CHN] (China / CNSA) — 45 Multi-Orbit Satellites\n• GLONASS [RUS] (Russia / Roscosmos) — 24 Satellites\n• QZSS [JPN] (Japan / JAXA) — 4 Asia-Pacific Satellites"
                         android:textColor="#CBD5E1"
                         android:textSize="11sp"
                         android:lineSpacingExtra="3dp" />
@@ -911,7 +911,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3 GEO + 4 GSO Satellites (35,786 km)"
+                        android:text="3 GEO + 7 GSO Satellites (35,786 km)"
                         android:textColor="@color/text_white"
                         android:textStyle="bold"
                         android:textSize="15sp"
@@ -920,7 +920,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Unlike American GPS satellites that race across the sky at 3.9 km/s and set every few hours, ISRO stationed NavIC at 35,786 km in synchronous orbits:\n\n• 3 Geostationary (GEO): Positioned directly above the equator at 83°E, 32.5°E, and 129.5°E. From India they appear completely motionless in the sky 24/7/365.\n\n• 4 Geosynchronous (GSO): Inclined at 29°, tracing an analemma (figure-8) over 55°E and 111.75°E for high-elevation geometry.\n\n• NVS-01 Gen-2: Features indigenous space-grade Rubidium atomic clocks and adds the L1 civilian frequency."
+                        android:text="Unlike American GPS satellites that race across the sky at 3.9 km/s and set every few hours, ISRO stationed NavIC at 35,786 km in synchronous orbits:\n\n• 3 Geostationary (GEO): Positioned directly above the equator at 83°E, 32.5°E, and 129.5°E. From India they appear completely motionless in the sky 24/7/365.\n\n• 7 Geosynchronous (GSO): Inclined at 29°, tracing an analemma (figure-8) over 55°E and 111.75°E for high-elevation geometry.\n\n• NVS Second-Gen (NVS-01, NVS-02, NVS-03): Feature indigenous space-grade Rubidium atomic clocks and add the L1 civilian frequency."
                         android:textColor="#E2E8F0"
                         android:textSize="12sp"
                         android:lineSpacingExtra="3dp" />
