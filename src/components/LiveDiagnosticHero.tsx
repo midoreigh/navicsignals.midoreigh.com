@@ -318,9 +318,9 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 </g>
 
                 {/* 7. MEO INCLINED ORBITAL RING (GPS 20,200 km Altitude, 55° Inclination) */}
-                {/* Rear half of orbit (passes on the far side of Earth - dimmed) */}
+                {/* Rear segment: passes on the far side of Earth (dimmed behind Earth's sphere between limb points) */}
                 <path 
-                  d="M 5,250 A 265 110 0 0 1 535,250" 
+                  d="M 73.4,176.3 A 265 110 0 0 1 466.6,176.3" 
                   transform="rotate(-32 270 250)" 
                   fill="none" 
                   stroke="#38bdf8" 
@@ -328,9 +328,9 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   strokeDasharray="3 5" 
                   opacity="0.18" 
                 />
-                {/* Front half of orbit (loops in front of Southern Hemisphere / Indian Ocean) */}
+                {/* Front & Space segment: full line-of-sight continuing seamlessly through deep space and across front of Earth */}
                 <path 
-                  d="M 535,250 A 265 110 0 0 1 5,250" 
+                  d="M 466.6,176.3 A 265 110 0 1 1 73.4,176.3" 
                   transform="rotate(-32 270 250)" 
                   fill="none" 
                   stroke="#38bdf8" 
