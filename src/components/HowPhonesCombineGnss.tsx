@@ -83,8 +83,7 @@ export const HowPhonesCombineGnss: React.FC = () => {
             How Your Phone Blends Signals from 6 Constellations
           </h2>
           <p className="mt-3 text-slate-300 text-xs sm:text-base leading-relaxed px-1">
-            People commonly say "turn on your GPS", but today's smartphones are actually sophisticated{' '}
-            <strong className="text-white">Multi-Constellation GNSS computers</strong>. Your chipset simultaneously tracks 30+ satellites across multiple nations.
+            Your phone does not rely on a single constellation. Inside the modem, an advanced positioning engine fuses signals from dozens of satellites across six nations simultaneously.
           </p>
         </div>
 
@@ -98,15 +97,15 @@ export const HowPhonesCombineGnss: React.FC = () => {
               <div className="space-y-2.5 w-full">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-sm sm:text-base font-extrabold text-white">
-                    What is GNSS? (Global Navigation Satellite System)
+                    What is GNSS?
                   </h3>
-                  <span className="text-[10px] font-mono px-2 py-0.2 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                    Full Form &amp; Meaning
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                    Core Concept
                   </span>
                 </div>
 
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  <strong className="text-sky-300">GNSS</strong> stands for <strong className="text-white">Global Navigation Satellite System</strong>. It is the universal standard term used in aerospace and engineering for all satellite-based positioning networks orbiting Earth.
+                  <strong className="text-sky-300">GNSS</strong> (<strong className="text-white">Global Navigation Satellite System</strong>) is the universal engineering term for all satellite-based positioning networks orbiting Earth.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
@@ -876,7 +875,7 @@ export const HowPhonesCombineGnss: React.FC = () => {
                 {/* Interactive Slider Area */}
                 <div className="mt-4 space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                    <span>Adjust Tower Height</span>
+                    <span>Height Range</span>
                     <span className="text-[11px] text-slate-400">10m – 100m</span>
                   </div>
 

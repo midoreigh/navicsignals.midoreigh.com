@@ -258,9 +258,8 @@ export const MobileAppShowcase: React.FC = () => {
                     <div className="space-y-2 text-[10px]">
                       <div className="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
                         <div className="text-sky-400 font-bold mb-1">WHAT IS GNSS?</div>
-                        <div className="text-white font-semibold">Global Navigation Satellite System</div>
-                        <div className="text-slate-400 text-[9px] mt-1 leading-relaxed">
-                          Scientific umbrella term covering all orbital navigation networks. GPS is only USA; your phone fuses 6 global constellations.
+                        <div className="text-slate-300 text-[9px] leading-relaxed">
+                          The universal engineering standard for space-based positioning. GPS refers specifically to the US network, while modern phones fuse up to 6 constellations simultaneously.
                         </div>
                       </div>
                       <div className="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
@@ -413,7 +412,7 @@ export const MobileAppShowcase: React.FC = () => {
                 <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
                   <span>NavIC Signals APK</span>
                   <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300">
-                    GitHub Release
+                    Android Companion
                   </span>
                 </h4>
                 <p className="text-[11px] text-slate-300 mt-0.5">
@@ -425,7 +424,7 @@ export const MobileAppShowcase: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-[11px] text-sky-400 hover:text-sky-300 transition-colors inline-flex items-center gap-1 mt-1"
                 >
-                  <span>View GitHub Release &amp; Checksums</span>
+                  <span>Release Notes &amp; Checksums</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -435,7 +434,7 @@ export const MobileAppShowcase: React.FC = () => {
                 className="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-xs bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-slate-950 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2 shrink-0"
               >
                 <Download className="w-4 h-4 text-slate-950 shrink-0" />
-                <span>Download APK from GitHub</span>
+                <span>Download APK</span>
               </a>
             </div>
 
@@ -461,14 +460,11 @@ export const MobileAppShowcase: React.FC = () => {
                 <Smartphone className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-sm sm:text-base font-bold text-white flex flex-wrap items-center gap-2">
-                  <span>Live Hardware Telemetry vs. Web Explanation</span>
-                  <span className="text-[10px] font-normal px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30">
-                    Why the Native App is Required for Live Data
-                  </span>
+                <h3 className="text-sm sm:text-base font-bold text-white">
+                  Why Live Telemetry Requires a Native App
                 </h3>
-                <p className="text-[11px] sm:text-xs text-slate-400">
-                  Websites explain the science — only the native APK can measure the hardware baseband
+                <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
+                  Web browsers operate in a privacy sandbox, while the Android companion app interfaces directly with raw GNSS baseband hardware.
                 </p>
               </div>
             </div>

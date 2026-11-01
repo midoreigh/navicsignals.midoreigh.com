@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-gradient-to-r from-orange-500/20 via-white/10 to-emerald-500/20 text-orange-200 border border-orange-500/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
-                  IRNSS / NavIC
+                  IRNSS Space Segment
                 </span>
               </div>
               <p className="hidden md:block text-[11px] text-slate-400">

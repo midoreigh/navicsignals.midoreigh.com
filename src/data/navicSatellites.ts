@@ -42,7 +42,7 @@ export const CONSTELLATION_METADATA: Record<string, ConstellationInfo> = {
     bands: ['L5 (1176.45 MHz)', 'S-band (2492.028 MHz)', 'L1 (1575.42 MHz)'],
     color: '#FF9933',
     accentColor: '#138808',
-    description: 'India regional navigation system with geostationary & geosynchronous satellites engineered specifically for the Indian Subcontinent high-elevation line-of-sight.',
+    description: "India's regional navigation system with geostationary & geosynchronous satellites engineered specifically for high-elevation coverage over the Indian subcontinent.",
   },
   GPS: {
     name: 'GPS (NAVSTAR)',

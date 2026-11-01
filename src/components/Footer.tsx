@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
               An independent educational and diagnostic resource explaining smartphone multi-constellation GNSS sensor fusion and India's NavIC (IRNSS) space segment.
             </p>
             <div className="flex items-center gap-2 text-[11px] text-slate-500 font-mono">
-              <span>Independent Open-Source GNSS Intelligence</span>
+              <span>Open-Source GNSS Intelligence</span>
             </div>
           </div>
 
