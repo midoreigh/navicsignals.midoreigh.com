@@ -38,12 +38,16 @@ jobs:
         run: |
           version="${GITHUB_REF_NAME#android-v}"
           version="${version#v}"
+          cat << EOF > /tmp/release_notes.md
+          ### NavIC Signals v${version}
+          - Direct hardware access to NavIC (IRNSS) satellite signals & high-elevation zenith tracking
+          - Full multi-constellation GNSS support (NavIC, GPS, Galileo, BeiDou, GLONASS, QZSS)
+          - Real-time NMEA sentence logger (\$GIGSV / \$IRGSV)
+          - Free and open-source Android companion app
+          EOF
           gh release create "$GITHUB_REF_NAME" \
             "android-app/NavICSignals-v${version}.apk" \
             "android-app/NavICSignals-v${version}.apk.sha256" \
             --title "NavIC Signals v${version}" \
-            --notes "### NavIC Signals v${version}
-- Direct hardware access to ISRO NavIC (IRNSS) satellite signals & high-elevation zenith tracking
-- Full multi-constellation GNSS support (NavIC, GPS, Galileo, BeiDou, GLONASS, QZSS)
-- Real-time NMEA sentence logger (\$GIGSV / \$IRGSV)
-- Free and open-source Android companion app"
+            --notes-file /tmp/release_notes.md \
+            --clobber
