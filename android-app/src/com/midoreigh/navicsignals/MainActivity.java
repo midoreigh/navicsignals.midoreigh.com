@@ -224,9 +224,10 @@ public class MainActivity extends Activity implements LocationListener, OnNmeaMe
             }
         }
 
-        // Sort NavIC and others by fix & signal strength without synthetic classes
+        // Sort NavIC and others by elevation (highest elevation on top)
         sortSatellites(navicList);
         sortSatellites(othersList);
+        sortSatellites(allList);
 
         synchronized (this) {
             this.latestTotalSats = count;
@@ -268,6 +269,9 @@ public class MainActivity extends Activity implements LocationListener, OnNmeaMe
     }
 
     private boolean shouldSwapSatellites(Satellite a, Satellite b) {
+        if (b.elevation != a.elevation) {
+            return b.elevation > a.elevation;
+        }
         if (a.usedInFix != b.usedInFix) {
             return !a.usedInFix && b.usedInFix;
         }
