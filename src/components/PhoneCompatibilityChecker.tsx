@@ -71,8 +71,8 @@ export const PhoneCompatibilityChecker: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1 w-full min-w-0">
-            {/* Brand Filter - Horizontally scrollable on mobile */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 w-full min-w-0 touch-pan-x">
+            {/* Brand Filter - Clean smooth scroll with breathing room and no scrollbar touching buttons */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-0.5 w-full min-w-0 touch-pan-x">
               <span className="text-[11px] text-slate-400 mr-1 font-mono shrink-0">Brand:</span>
               {brands.map(brand => (
                 <button
@@ -80,8 +80,8 @@ export const PhoneCompatibilityChecker: React.FC = () => {
                   onClick={() => setSelectedBrand(brand)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     selectedBrand === brand
-                      ? 'bg-sky-500 text-slate-950 font-bold'
-                      : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                      ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/20'
+                      : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700'
                   }`}
                 >
                   {brand}
@@ -90,7 +90,7 @@ export const PhoneCompatibilityChecker: React.FC = () => {
             </div>
 
             {/* Support Filter */}
-            <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
+            <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto py-2">
               <span className="text-[11px] text-slate-400 mr-1 font-mono">Status:</span>
               <button
                 onClick={() => setFilterSupport('All')}
