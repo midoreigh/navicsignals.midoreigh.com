@@ -286,15 +286,37 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   <path d={INDIA_OUTLINE_PATH} fill="#06281e" stroke="#34d399" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
                 </g>
 
-                {/* Active Smartphone Receiver Beacon in Central India */}
-                <g transform="translate(264, 246)">
+                {/* Active Smartphone Receiver Beacon in Central India (Nagpur/MP Geographic Centroid) */}
+                <g transform="translate(248, 240)">
                   <circle r="14" fill="none" stroke="#f97316" strokeWidth="1.2" opacity="0.3" className="animate-ping" />
                   <circle r="7" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
                   <circle r="3" fill="#ffedd5" stroke="#f97316" strokeWidth="1.5" />
-                  <text x="0" y="16" fill="#fed7aa" fontSize="8.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                  <text 
+                    x="0" 
+                    y="15" 
+                    fill="#fed7aa" 
+                    stroke="#050814" 
+                    strokeWidth="2.5" 
+                    paintOrder="stroke" 
+                    fontSize="8.5" 
+                    fontWeight="bold" 
+                    textAnchor="middle" 
+                    fontFamily="monospace"
+                  >
                     INDIA
                   </text>
-                  <text x="0" y="24" fill="#6ee7b7" fontSize="6.5" fontWeight="600" textAnchor="middle" fontFamily="monospace">
+                  <text 
+                    x="0" 
+                    y="24" 
+                    fill="#6ee7b7" 
+                    stroke="#050814" 
+                    strokeWidth="2" 
+                    paintOrder="stroke" 
+                    fontSize="6.5" 
+                    fontWeight="600" 
+                    textAnchor="middle" 
+                    fontFamily="monospace"
+                  >
                     [RECEIVER ZENITH]
                   </text>
                 </g>
