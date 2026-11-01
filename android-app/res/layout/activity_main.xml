@@ -836,7 +836,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NavIC PRN Codes: PRN 02 (1B), PRN 03 (1C), PRN 04 (1D), PRN 05 (1E), PRN 06 (1F), PRN 09 (1I), PRN 10 (NVS-01 Gen-2)."
+                        android:text="NavIC PRN Codes: PRN 01 (1A), PRN 02 (1B), PRN 03 (1C), PRN 05 (1E), PRN 06 (1F), PRN 07 (1G), PRN 09 (1I), PRN 10 (NVS-01), PRN 11 (NVS-02), PRN 12 (NVS-03 Gen-2)."
                         android:textColor="@color/signal_strong"
                         android:textSize="10sp"
                         android:fontFamily="monospace" />
