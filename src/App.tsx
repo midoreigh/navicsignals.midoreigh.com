@@ -24,14 +24,14 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#02040b] text-slate-100 selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden w-full max-w-full">
-      {/* Top sticky navigation */}
+      {/* Top fixed navigation */}
       <Header
         onTestClick={scrollToTop}
         onCheckPhone={scrollToPhoneCheck}
         onGetApp={scrollToApp}
       />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden">
+      <main className="flex-1 w-full max-w-full pt-16 sm:pt-20 overflow-x-hidden">
         {/* 1. Hero with Live Browser Diagnostic & Sandbox Explainer */}
         <LiveDiagnosticHero
           onCheckPhone={scrollToPhoneCheck}

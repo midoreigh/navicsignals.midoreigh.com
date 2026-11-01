@@ -20,7 +20,7 @@ export const MobileAppShowcase: React.FC = () => {
   }, []);
 
   return (
-    <section id="mobile-app" className="py-14 sm:py-20 relative border-t border-slate-800/80">
+    <section id="mobile-app" className="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

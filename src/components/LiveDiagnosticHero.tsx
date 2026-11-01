@@ -79,7 +79,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
   }
 
   return (
-    <section className="relative overflow-hidden pt-4 pb-14 sm:pt-8 sm:pb-20 bg-[#02040b]">
+    <section className="relative overflow-hidden pt-4 pb-10 sm:pt-6 sm:pb-14 bg-[#02040b]">
       {/* Full-Bleed Deep Space Background: Stars, Cosmic Coordinates & Distant Nebular Dust */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Deep space color aura */}
@@ -252,7 +252,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
           <div className="lg:col-span-6 order-3 lg:order-2 self-center flex flex-col items-center justify-center relative">
             <div className="relative w-full max-w-[620px] aspect-[600/560] flex items-center justify-center select-none">
               
-              <svg viewBox="0 0 600 560" className="w-full h-full overflow-visible">
+              <svg viewBox="0 -12 600 572" className="w-full h-full overflow-visible">
                 <defs>
                   {/* Atmospheric Glow Filters */}
                   <filter id="atmosphereLimbGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -373,15 +373,15 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
 
                 {/* 8. NAVIC CONSTELLATION (ISRO GEO SATELLITES - STATIONARY OVER INDIA) */}
                 {/* Overhead Regional Canopy Arc Connecting the 3 Stationary Satellites */}
-                <path d="M 160,115 Q 270,72 380,115" fill="none" stroke="#f97316" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
+                <path d="M 135,48 Q 270,12 405,48" fill="none" stroke="#f97316" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
 
-                {/* Saffron Transmission Beams Projecting Downward onto Indian Subcontinent (Clean Ambient Beams without Dotted Triangle Outlines) */}
-                <polygon points="270,82 195,260 345,260" fill="url(#navicTransmissionCone)" opacity="0.45" />
-                <polygon points="160,115 205,255 285,300" fill="url(#navicTransmissionCone)" opacity="0.2" />
-                <polygon points="380,115 255,300 335,255" fill="url(#navicTransmissionCone)" opacity="0.2" />
+                {/* Saffron Transmission Beams Projecting Downward onto Indian Subcontinent */}
+                <polygon points="270,24 195,255 345,255" fill="url(#navicTransmissionCone)" opacity="0.38" />
+                <polygon points="135,48 200,245 285,290" fill="url(#navicTransmissionCone)" opacity="0.16" />
+                <polygon points="405,48 255,290 340,245" fill="url(#navicTransmissionCone)" opacity="0.16" />
 
                 {/* NavIC Prime Satellite: NVS-03 (Launched Oct 2026 at Zenith) */}
-                <g transform="translate(270, 82)">
+                <g transform="translate(270, 24)">
                   <circle r="16" fill="#f97316" opacity="0.25" filter="url(#telemetryBeaconGlow)" className="animate-pulse" />
                   <circle r="8" fill="#ea580c" stroke="#ffffff" strokeWidth="1.5" />
                   {/* Solar Arrays */}
@@ -395,28 +395,34 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   <text x="0" y="-12" fill="#fed7aa" fontSize="9" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
                     🇮🇳 NVS-03
                   </text>
-                  <text x="0" y="24" fill="#fb923c" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    L1+L5 • OCT 2026 ZENITH
+                  <text x="0" y="19" fill="#fb923c" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                    L1+L5 • ZENITH LOCK
                   </text>
                 </g>
 
                 {/* NavIC Flank Satellite 1: IRNSS-1I (Western Sky) */}
-                <g transform="translate(160, 115)">
+                <g transform="translate(135, 48)">
                   <circle r="6" fill="#ea580c" stroke="#ffffff" strokeWidth="1.2" />
                   <rect x="-18" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
                   <rect x="9" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
-                  <text x="0" y="-10" fill="#fed7aa" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                  <text x="0" y="-11" fill="#fed7aa" fontSize="8" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
                     IRNSS-1I
+                  </text>
+                  <text x="0" y="16" fill="#fdba74" fontSize="7" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                    L5+S
                   </text>
                 </g>
 
                 {/* NavIC Flank Satellite 2: NVS-01 (Eastern Sky) */}
-                <g transform="translate(380, 115)">
+                <g transform="translate(405, 48)">
                   <circle r="6" fill="#ea580c" stroke="#ffffff" strokeWidth="1.2" />
                   <rect x="-18" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
                   <rect x="9" y="-3" width="9" height="6" rx="1" fill="#0284c7" stroke="#38bdf8" strokeWidth="0.6" />
-                  <text x="0" y="-10" fill="#fed7aa" fontSize="7.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                  <text x="0" y="-11" fill="#fed7aa" fontSize="8" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
                     NVS-01
+                  </text>
+                  <text x="0" y="16" fill="#fdba74" fontSize="7" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                    L1+L5
                   </text>
                 </g>
 
