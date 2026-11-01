@@ -304,9 +304,6 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   <path d={INDIA_OUTLINE_PATH} fill="#06281e" stroke="#34d399" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
                 </g>
 
-                {/* Sri Lanka Island: Muted Continental Palette (NOT Highlighted Green) */}
-                <ellipse cx="268" cy="332" rx="5.5" ry="9" fill="#111c2e" stroke="#1e293b" strokeWidth="0.8" transform="rotate(10 268 332)" />
-
                 {/* Active Smartphone Receiver Beacon in Central India */}
                 <g transform="translate(264, 246)">
                   <circle r="14" fill="none" stroke="#f97316" strokeWidth="1.2" opacity="0.3" className="animate-ping" />
