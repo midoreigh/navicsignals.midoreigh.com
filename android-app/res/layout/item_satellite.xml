@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_marginBottom="6dp"
+    android:background="#151E36">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/sat_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IND"
+            android:textColor="#38BDF8"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textSize="11sp"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:id="@+id/sat_prn"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:text="PRN 02"
+            android:textColor="@color/navic_saffron"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:fontFamily="monospace" />
+
+        <TextView
+            android:id="@+id/sat_constellation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="NavIC"
+            android:textColor="@color/text_white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/sat_carrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="L5 (1176 MHz)"
+            android:textColor="@color/navic_saffron"
+            android:background="#22FF9933"
+            android:textSize="9sp"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="1dp"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:id="@+id/sat_el_az"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="El: 68°"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:id="@+id/sat_cn0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="42.4 dB"
+            android:textColor="@color/signal_strong"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:fontFamily="monospace" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/sat_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:max="50"
+        android:progress="42"
+        android:layout_marginTop="4dp" />
+</LinearLayout>

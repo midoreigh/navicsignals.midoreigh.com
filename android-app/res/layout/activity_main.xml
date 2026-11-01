@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/space_bg">
+
+    <!-- TOP APP BAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="10dp"
+        android:background="#0A1024">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🇮🇳"
+            android:textSize="20sp"
+            android:layout_marginEnd="10dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NavIC SkyView"
+                android:textColor="@color/text_white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_fix_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acquiring GNSS fix..."
+                android:textColor="@color/signal_strong"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_satellite_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Sats"
+            android:textColor="@color/navic_saffron"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            android:background="#22FF9933"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp" />
+    </LinearLayout>
+
+    <!-- Permission Warning Banner -->
+    <LinearLayout
+        android:id="@+id/banner_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#33EF4444"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[ALERT]"
+            android:textColor="#EF4444"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textSize="11sp"
+            android:layout_marginEnd="8dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location Permission Required"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Required to read GnssStatus &amp; NavIC signals"
+                android:textColor="#CBD5E1"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_grant_permission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GRANT"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            android:textColor="#050814"
+            android:background="#FF9933"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp" />
+    </LinearLayout>
+
+    <!-- MAIN CONTENT VIEWPORT (Weight 1) -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- ============================================================ -->
+        <!-- TAB 1: RADAR / SKYPLOT (True Native Instrument Dashboard)    -->
+        <!-- NO SCROLLBAR, IMMERSIVE INSTRUMENT CLUSTER                   -->
+        <!-- ============================================================ -->
+        <ScrollView
+            android:id="@+id/view_tab_radar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="12dp"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Radar Header Pill -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POLAR SKYPLOT (OVERHEAD ZENITH)"
+                    android:textColor="@color/signal_cyan"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="4dp" />
+
+                <!-- The Radar Surface (Clean, No Flag Clutter, Generous Scale) -->
+                <com.isro.navicskyview.RadarView
+                    android:id="@+id/radar_view"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Radar Legend -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NavIC [IND] (High Zenith Center)"
+                        android:textColor="@color/navic_saffron"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Others (USA, EU, China, Russia)"
+                        android:textColor="@color/signal_cyan"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- CARD 1: NavIC High-Zenith Fix Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_navic_bg"
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🇮🇳"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="6dp" />
+
+                        <TextView
+                            android:id="@+id/tv_radar_navic_status"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="NavIC: 3 Satellites Locked at Zenith (29°–62°)"
+                            android:textColor="@color/navic_saffron"
+                            android:textStyle="bold"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3D FIX"
+                            android:textColor="@color/signal_strong"
+                            android:textSize="9sp"
+                            android:fontFamily="monospace"
+                            android:textStyle="bold"
+                            android:background="#151E36"
+                            android:paddingHorizontal="4dp"
+                            android:paddingVertical="1dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_radar_coords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Coordinates: 10.6568° N, 76.5005° E (±3.8m)"
+                        android:textColor="@color/text_white"
+                        android:textSize="11sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/tv_radar_alt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Altitude: -- m • Speed: 0.0 km/h • Bearing: --°"
+                        android:textColor="@color/signal_cyan"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace" />
+                </LinearLayout>
+
+                <!-- CARD 2: Real-Time Multi-Constellation Breakdown Grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_bg"
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="LIVE CONSTELLATION TRACKING"
+                            android:textColor="@color/text_white"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            android:letterSpacing="0.05" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MULTI-CARRIER FIX"
+                            android:textColor="@color/signal_strong"
+                            android:textSize="9sp"
+                            android:fontFamily="monospace" />
+                    </LinearLayout>
+
+                    <!-- Constellation Grid (3 Columns x 2 Rows) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="6dp">
+
+                        <!-- NavIC (India) -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="#20FF9933"
+                            android:padding="8dp"
+                            android:layout_marginEnd="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🇮🇳 NavIC"
+                                android:textColor="@color/navic_saffron"
+                                android:textStyle="bold"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_count_navic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3 in fix"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <!-- GPS (USA) -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="#203B82F6"
+                            android:padding="8dp"
+                            android:layout_marginHorizontal="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🇺🇸 GPS"
+                                android:textColor="#60A5FA"
+                                android:textStyle="bold"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_count_gps"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="12 in fix"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <!-- Galileo (EU) -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="#2006B6D4"
+                            android:padding="8dp"
+                            android:layout_marginStart="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🇪🇺 Galileo"
+                                android:textColor="#38BDF8"
+                                android:textStyle="bold"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_count_galileo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10 in fix"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2: BeiDou, GLONASS, QZSS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- BeiDou (China) -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="#20EC4899"
+                            android:padding="8dp"
+                            android:layout_marginEnd="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🇨🇳 BeiDou"
+                                android:textColor="#F472B6"
+                                android:textStyle="bold"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_count_beidou"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="28 in fix"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <!-- GLONASS (Russia) -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="#20A855F7"
+                            android:padding="8dp"
+                            android:layout_marginHorizontal="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🇷🇺 GLONASS"
+                                android:textColor="#C084FC"
+                                android:textStyle="bold"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_count_glonass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="6 in fix"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <!-- QZSS / SBAS -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="#20EAB308"
+                            android:padding="8dp"
+                            android:layout_marginStart="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🇯🇵 QZSS / SBAS"
+                                android:textColor="#FDE047"
+                                android:textStyle="bold"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_count_qzss"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 in fix"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- CARD 3: Urban Canyon Astrodynamics Note -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#070C1E"
+                    android:padding="10dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[NOTE]"
+                        android:textColor="@color/navic_saffron"
+                        android:textStyle="bold"
+                        android:typeface="monospace"
+                        android:textSize="10sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="NavIC satellites remain high overhead India 24/7/365, shining signals down dense urban street canyons without skyscraper obstruction."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============================================================ -->
+        <!-- TAB 2: LIVE SATELLITE SIGNALS (Dedicated List)               -->
+        <!-- NO DESKTOP SCROLLBAR                                        -->
+        <!-- ============================================================ -->
+        <ScrollView
+            android:id="@+id/view_tab_satellites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="24dp">
+
+                <!-- NavIC Satellites (Pinned On Top) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_navic_bg"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🇮🇳"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="6dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="NavIC / IRNSS Satellites (ISRO)"
+                            android:textColor="@color/navic_saffron"
+                            android:textStyle="bold"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/navic_satellite_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_navic_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Listening for IRNSS L5 &amp; S-band signals..."
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:padding="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Other Global Constellations Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_bg"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other GNSS Constellations (GPS, Galileo, BeiDou)"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:id="@+id/other_satellite_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_others_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Acquiring other GNSS constellation satellites..."
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:padding="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============================================================ -->
+        <!-- TAB 3: LIVE NMEA TELEMETRY (Cyber Terminal Console)          -->
+        <!-- ============================================================ -->
+        <LinearLayout
+            android:id="@+id/view_tab_nmea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#02040A"
+            android:padding="12dp"
+            android:visibility="gone">
+
+            <!-- Terminal Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LIVE NMEA 0183 TELEMETRY STREAM"
+                        android:textColor="@color/navic_saffron"
+                        android:textStyle="bold"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$GIGSV = NavIC • $GNGGA = Fix • $GNRMC = Velocity"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="9sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btn_nmea_pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PAUSE"
+                    android:textColor="#050814"
+                    android:background="@color/signal_strong"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1E293B"
+                android:layout_marginBottom="8dp" />
+
+            <!-- NMEA Output Window -->
+            <TextView
+                android:id="@+id/tv_nmea_log"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Waiting for NMEA sentence stream..."
+                android:textColor="@color/signal_strong"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="3dp" />
+        </LinearLayout>
+
+        <!-- ============================================================ -->
+        <!-- TAB 4: GNSS & NAVIC EDUCATIONAL GUIDE                        -->
+        <!-- NO DESKTOP SCROLLBAR                                        -->
+        <!-- ============================================================ -->
+        <ScrollView
+            android:id="@+id/view_tab_guide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="24dp">
+
+                <!-- Card 1: What is GNSS? -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_bg"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WHAT IS GNSS? (FULL FORM)"
+                        android:textColor="@color/signal_cyan"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Global Navigation Satellite System"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Whenever people casually say &quot;turn on GPS&quot;, your phone is actually using GNSS. GNSS is the scientific umbrella term for all space-based positioning networks orbiting Earth."
+                        android:textColor="#E2E8F0"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="3dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <!-- The Xerox Effect box -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#050814"
+                        android:padding="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="The &quot;Xerox&quot; Effect"
+                            android:textColor="@color/navic_saffron"
+                            android:textStyle="bold"
+                            android:textSize="11sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Just as in India we say &quot;Xerox&quot; for photocopies or &quot;Bisleri&quot; for packaged water, people casually say &quot;GPS&quot; for satellite location. But GPS (NAVSTAR) is only America's military system. Your smartphone combines 6 international constellations simultaneously."
+                            android:textColor="#CBD5E1"
+                            android:textSize="11sp"
+                            android:lineSpacingExtra="2dp" />
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp"
+                            android:lineSpacingExtra="2dp" />
+                    </LinearLayout>
+
+                    <!-- 6 Constellations list -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The 6 GNSS Constellations in Your Phone:"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="11sp"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• NavIC [IND] (India / ISRO) — 8 Regional Birds (GEO/GSO)\n• GPS [USA] (USA / Space Force) — 31 Global MEO Satellites\n• Galileo [EUR] (Europe / ESA) — 26 High-Precision Satellites\n• BeiDou [CHN] (China / CNSA) — 45 Multi-Orbit Satellites\n• GLONASS [RUS] (Russia / Roscosmos) — 24 Satellites\n• QZSS [JPN] (Japan / JAXA) — 4 Asia-Pacific Satellites"
+                        android:textColor="#CBD5E1"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+                <!-- Card 2: What is PRN? -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_bg"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WHAT IS PRN? (PSEUDO-RANDOM NOISE)"
+                        android:textColor="@color/navic_saffron"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The Satellite's Unique Digital Fingerprint"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="All satellites broadcast on the same carrier frequency (like NavIC L5 on 1176.45 MHz). To avoid radio collision, each satellite transmits a unique orthogonal binary code (PRN)."
+                        android:textColor="#E2E8F0"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="3dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your phone's baseband matches this mathematical sequence using Code Division Multiple Access (CDMA). To standard radio scanners it sounds like static &quot;Noise&quot;, but because it is pre-programmed, it is &quot;Pseudo-Random&quot;."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="NavIC PRN Codes: PRN 02 (1B), PRN 03 (1C), PRN 04 (1D), PRN 05 (1E), PRN 06 (1F), PRN 09 (1I), PRN 10 (NVS-01 Gen-2)."
+                        android:textColor="@color/signal_strong"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace" />
+                </LinearLayout>
+
+                <!-- Card 3: The Urban Canyon Advantage -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_navic_bg"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WHY NAVIC WINS IN INDIA"
+                        android:textColor="@color/navic_saffron"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The Urban Canyon Advantage"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="In dense Indian metropolises like Mumbai, Bengaluru, and Delhi, tall high-rises block foreign GPS satellites orbiting low near the horizon (30°–40° elevation). Signals reflect off concrete, creating severe multipath position drift."
+                        android:textColor="#E2E8F0"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="3dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="NavIC satellites, however, are stationed near Zenith (70°–85° high elevation directly overhead). Like the midday sun, their radio waves shine straight down street canyons without building blockage!"
+                        android:textColor="@color/signal_strong"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+                <!-- Card 4: GEO & GSO Astrodynamics -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_bg"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ISRO SPACE ARCHITECTURE"
+                        android:textColor="@color/signal_cyan"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 GEO + 4 GSO Satellites (35,786 km)"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Unlike American GPS satellites that race across the sky at 3.9 km/s and set every few hours, ISRO stationed NavIC at 35,786 km in synchronous orbits:\n\n• 3 Geostationary (GEO): Positioned directly above the equator at 83°E, 32.5°E, and 129.5°E. From India they appear completely motionless in the sky 24/7/365.\n\n• 4 Geosynchronous (GSO): Inclined at 29°, tracing an analemma (figure-8) over 55°E and 111.75°E for high-elevation geometry.\n\n• NVS-01 Gen-2: Features indigenous space-grade Rubidium atomic clocks and adds the L1 civilian frequency."
+                        android:textColor="#E2E8F0"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+                <!-- Card 5: 5-Stage Fusion Pipeline -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_bg"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HOW YOUR PHONE COMBINES SIGNALS"
+                        android:textColor="@color/signal_strong"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The 5-Stage Positioning Pipeline"
+                        android:textColor="@color/text_white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="01. Dual-Band RF Antenna: Tunes into L1 (1575 MHz) and L5 (1176 MHz). Comparing both frequencies cancels ionospheric atmospheric delay.\n\n02. Baseband Correlators: Aligns PRN code sequences to calculate nanosecond travel time from atomic clocks in orbit.\n\n03. Trilateration Engine: Solves equations for 3D coordinates (X, Y, Z) and receiver clock offset. Modern phones fuse 30+ satellites.\n\n04. A-GNSS Over 4G/5G: Cellular towers push orbit ephemeris in 1s, slashing time-to-first-fix from 45s down to 1.5s.\n\n05. IMU Sensor Fusion: An Extended Kalman Filter (EKF) fuses satellite fixes with accelerometer, gyro, and barometer for tunnels and flyovers."
+                        android:textColor="#E2E8F0"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <!-- ============================================================ -->
+    <!-- AUTHENTIC NATIVE ANDROID BOTTOM NAVIGATION BAR               -->
+    <!-- REACHABLE BY THUMB, WITH ACTIVE PILL HIGHLIGHT               -->
+    <!-- ============================================================ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bottom_nav_bg"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Tab 1: Radar -->
+        <LinearLayout
+            android:id="@+id/btn_tab_radar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:background="@drawable/tab_bottom_active"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/icon_tab_radar"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_tab_radar"
+                android:tint="@color/navic_saffron"
+                android:contentDescription="Radar" />
+
+            <TextView
+                android:id="@+id/label_tab_radar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Radar"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="11sp"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <!-- Tab 2: Satellites -->
+        <LinearLayout
+            android:id="@+id/btn_tab_satellites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/icon_tab_satellites"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_tab_satellites"
+                android:tint="@color/text_secondary"
+                android:contentDescription="Satellites" />
+
+            <TextView
+                android:id="@+id/label_tab_satellites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Satellites"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <!-- Tab 3: Telemetry -->
+        <LinearLayout
+            android:id="@+id/btn_tab_nmea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/icon_tab_nmea"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_tab_telemetry"
+                android:tint="@color/text_secondary"
+                android:contentDescription="Telemetry" />
+
+            <TextView
+                android:id="@+id/label_tab_nmea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telemetry"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <!-- Tab 4: Guide -->
+        <LinearLayout
+            android:id="@+id/btn_tab_guide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/icon_tab_guide"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_tab_guide"
+                android:tint="@color/text_secondary"
+                android:contentDescription="Guide" />
+
+            <TextView
+                android:id="@+id/label_tab_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guide"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

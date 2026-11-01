@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*', 'android-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  android:
+    name: Build and publish the Android APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - name: Build the APK
+        working-directory: android-app
+        run: |
+          ./gradlew assembleRelease
+          version="${GITHUB_REF_NAME#android-v}"
+          version="${version#v}"
+          apk="NavICSkyView-v${version}.apk"
+          cp app/build/outputs/apk/release/app-release.apk "$apk"
+          shasum -a 256 "$apk" > "$apk.sha256"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#android-v}"
+          version="${version#v}"
+          gh release create "$GITHUB_REF_NAME" \
+            "android-app/NavICSkyView-v${version}.apk" \
+            "android-app/NavICSkyView-v${version}.apk.sha256" \
+            --title "NavIC SkyView v${version}" \
+            --notes "### NavIC SkyView v${version}
+- Direct hardware access to ISRO NavIC (IRNSS) satellite signals & high-elevation zenith tracking
+- Full multi-constellation GNSS support (NavIC, GPS, Galileo, BeiDou, GLONASS, QZSS)
+- Real-time NMEA sentence logger (\$GIGSV / \$IRGSV)
+- Free and open-source Android companion app"
