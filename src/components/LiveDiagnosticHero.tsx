@@ -59,18 +59,6 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
   const gpsX = cx + x0 * cosTilt - y0 * sinTilt;
   const gpsY = cy + x0 * sinTilt + y0 * cosTilt;
 
-  // Tangent angle for motion trail & velocity vector
-  const dx0 = -rx * Math.sin(alpha);
-  const dy0 = ry * Math.cos(alpha);
-  const vx = dx0 * cosTilt - dy0 * sinTilt;
-  const vy = dx0 * sinTilt + dy0 * cosTilt;
-  const headingAngle = Math.atan2(vy, vx) * (180 / Math.PI);
-
-  // Trail back-points for tail streak (120ms behind)
-  const tailLength = 28;
-  const tailX = -Math.cos(headingAngle * (Math.PI / 180)) * tailLength;
-  const tailY = -Math.sin(headingAngle * (Math.PI / 180)) * tailLength;
-
   // 3D Occlusion Math: Earth sphere radius = 210 px
   // When y0 < 0 (alpha between π and 2π), GPS is in the rear half of its orbit (behind Earth's plane).
   // If its 2D projected distance from Earth's center is < 210 px, it is physically behind the solid Earth.
@@ -260,12 +248,6 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                     <stop offset="40%" stopColor="#fb923c" stopOpacity="0.18" />
                     <stop offset="100%" stopColor="#10b981" stopOpacity="0.02" />
                   </linearGradient>
-
-                  {/* GPS Dynamic Motion Streak */}
-                  <linearGradient id="gpsMotionStreak" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#38bdf8" stopOpacity="0" />
-                    <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.9" />
-                  </linearGradient>
                 </defs>
 
                 {/* 1. Atmospheric Outer Halo & Rim Aura */}
@@ -398,18 +380,6 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                     opacity={gpsOpacity}
                     style={{ transition: 'opacity 0.2s ease-out' }}
                   >
-                    {/* Motion Streak Trailing Behind Satellite (only visible in foreground) */}
-                    {gpsOpacity > 0.4 && (
-                      <line 
-                        x1={tailX} 
-                        y1={tailY} 
-                        x2="0" 
-                        y2="0" 
-                        stroke="url(#gpsMotionStreak)" 
-                        strokeWidth="3.5" 
-                        strokeLinecap="round" 
-                      />
-                    )}
                     <circle 
                       r="7" 
                       fill={isOcculted ? '#0f172a' : '#0284c7'} 
