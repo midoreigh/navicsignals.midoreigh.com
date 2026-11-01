@@ -132,7 +132,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
               </span>
-              <span className="font-semibold text-orange-400">ISRO NavIC Active</span>
+              <span className="font-semibold text-orange-400">NavIC (IRNSS) Active</span>
               <span className="text-slate-600">•</span>
               <span className="text-slate-300">Indian Subcontinent Orbit</span>
             </div>
@@ -188,7 +188,7 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
             <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center lg:text-left border-t border-slate-800/80">
               <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
                 <div className="text-sm sm:text-lg font-extrabold text-orange-400 font-mono">8 Birds</div>
-                <div className="text-[10px] text-slate-400">ISRO IRNSS Fleet</div>
+                <div className="text-[10px] text-slate-400">Regional IRNSS Fleet</div>
               </div>
               <div className="p-2 sm:p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
                 <div className="text-sm sm:text-lg font-extrabold text-sky-400 font-mono truncate">1176.45 MHz</div>

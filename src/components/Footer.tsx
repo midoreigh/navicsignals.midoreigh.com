@@ -18,17 +18,17 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              An educational and diagnostic initiative explaining smartphone multi-constellation GNSS sensor fusion and India's NavIC (IRNSS) space segment.
+              An independent educational and diagnostic resource explaining smartphone multi-constellation GNSS sensor fusion and India's NavIC (IRNSS) space segment.
             </p>
             <div className="flex items-center gap-2 text-[11px] text-slate-500 font-mono">
-              <span>🇮🇳 Built for Indian Space Research (ISRO NavIC)</span>
+              <span>Independent Open-Source GNSS Intelligence</span>
             </div>
           </div>
 
-          {/* ISRO NavIC Specifications */}
+          {/* NavIC Specifications */}
           <div className="space-y-2">
             <div className="font-bold text-white uppercase tracking-wider text-[11px] font-mono">
-              Space Segment (ISRO)
+              NavIC Space Segment
             </div>
             <ul className="space-y-1.5 text-[11px]">
               <li><span className="text-slate-300">Constellation:</span> 7 Operational + NVS-01 Gen-2</li>
@@ -68,10 +68,10 @@ export const Footer: React.FC = () => {
           {/* Legal / Note */}
           <div className="space-y-2">
             <div className="font-bold text-white uppercase tracking-wider text-[11px] font-mono">
-              Architecture Note
+              Disclaimer &amp; Attribution
             </div>
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              NavIC (Navigation with Indian Constellation) and IRNSS are registered trademarks of the Indian Space Research Organisation (ISRO). GPS is operated by the US Space Force. All telemetry and constellation data are computed using publicly published ephemeris standards.
+              NavIC Signals is an independent open-source educational project and is not affiliated with, endorsed by, or connected to the Indian Space Research Organisation (ISRO) or the Government of India. NavIC (Navigation with Indian Constellation) and IRNSS are registered trademarks of ISRO.
             </p>
           </div>
         </div>

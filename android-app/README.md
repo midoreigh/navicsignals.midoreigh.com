@@ -97,4 +97,4 @@ locationManager.registerGnssStatusCallback(object : GnssStatus.Callback() {
 ---
 
 ## License
-Open source under Apache License 2.0. Built for the Indian Space Research community.
+Open source under Apache License 2.0. Independent open-source project for GNSS tracking and education. Not affiliated with or endorsed by ISRO.
