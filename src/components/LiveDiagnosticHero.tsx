@@ -65,6 +65,24 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
   const tailX = -Math.cos(headingAngle * (Math.PI / 180)) * tailLength;
   const tailY = -Math.sin(headingAngle * (Math.PI / 180)) * tailLength;
 
+  // 3D Occlusion Math: Earth sphere radius = 210 px
+  // When y0 < 0 (alpha between π and 2π), GPS is in the rear half of its orbit (behind Earth's plane).
+  // If its 2D projected distance from Earth's center is < 210 px, it is physically behind the solid Earth.
+  const distFromCenter = Math.hypot(gpsX - cx, gpsY - cy);
+  const isBehindEarth = y0 < 0;
+  const isOcculted = isBehindEarth && distFromCenter < 210;
+
+  // Opacity: 1.0 when in front of Earth; 0.75 in space on the far side;
+  // clearly dimmed to 0.35 with dashed telemetry marker when passing behind Earth.
+  let gpsOpacity = 1.0;
+  if (isBehindEarth) {
+    if (distFromCenter < 210) {
+      gpsOpacity = 0.35; // Dimmed when behind Earth
+    } else {
+      gpsOpacity = 0.75; // Far side of orbit in space
+    }
+  }
+
   return (
     <section className="relative overflow-hidden pt-4 pb-14 sm:pt-8 sm:pb-20 bg-[#02040b]">
       {/* Full-Bleed Deep Space Background: Stars, Cosmic Coordinates & Distant Nebular Dust */}
@@ -299,20 +317,35 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                   </text>
                 </g>
 
-                {/* 7. ORBITAL MECHANICS & RINGS */}
-                {/* GEO Orbital Ring (Geostationary 35,786 km Altitude Belt) */}
-                <ellipse cx={cx} cy={cy} rx="300" ry="170" fill="none" stroke="#f97316" strokeWidth="1.2" strokeDasharray="4 6" opacity="0.4" />
-                <text x="490" y="180" fill="#fb923c" fontSize="8" fontFamily="monospace" fontWeight="bold">
-                  GEO 35,786 km [STATIONARY BELT]
-                </text>
-
-                {/* MEO Inclined Orbital Ring (GPS 20,200 km Altitude, 55° Inclination) */}
-                <ellipse cx={cx} cy={cy} rx={rx} ry={ry} transform="rotate(-32 270 250)" fill="none" stroke="#38bdf8" strokeWidth="1.2" strokeDasharray="3 5" opacity="0.45" />
+                {/* 7. MEO INCLINED ORBITAL RING (GPS 20,200 km Altitude, 55° Inclination) */}
+                {/* Rear half of orbit (passes on the far side of Earth - dimmed) */}
+                <path 
+                  d="M 5,250 A 265 110 0 0 1 535,250" 
+                  transform="rotate(-32 270 250)" 
+                  fill="none" 
+                  stroke="#38bdf8" 
+                  strokeWidth="1.2" 
+                  strokeDasharray="3 5" 
+                  opacity="0.18" 
+                />
+                {/* Front half of orbit (loops in front of Southern Hemisphere / Indian Ocean) */}
+                <path 
+                  d="M 535,250 A 265 110 0 0 1 5,250" 
+                  transform="rotate(-32 270 250)" 
+                  fill="none" 
+                  stroke="#38bdf8" 
+                  strokeWidth="1.5" 
+                  strokeDasharray="3 5" 
+                  opacity="0.5" 
+                />
                 <text x="75" y="380" fill="#38bdf8" fontSize="8" fontFamily="monospace" fontWeight="bold">
                   MEO 20,200 km [INCLINED 55°]
                 </text>
 
                 {/* 8. NAVIC CONSTELLATION (ISRO GEO SATELLITES - STATIONARY OVER INDIA) */}
+                {/* Overhead Regional Canopy Arc Connecting the 3 Stationary Satellites */}
+                <path d="M 160,115 Q 270,72 380,115" fill="none" stroke="#f97316" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
+
                 {/* Saffron Transmission Beams Projecting Downward onto Indian Subcontinent */}
                 <polygon points="270,82 238,245 315,245" fill="url(#navicTransmissionCone)" stroke="#f97316" strokeWidth="0.8" strokeDasharray="2 3" opacity="0.7" />
                 <polygon points="160,115 240,245 285,275" fill="url(#navicTransmissionCone)" opacity="0.25" />
@@ -359,29 +392,43 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 </g>
 
                 {/* 9. GPS SATELLITE (USA NAVSTAR - 60FPS AMBIENT MEO FLYOVER) */}
-                <g transform={`translate(${gpsX}, ${gpsY})`}>
-                  {/* Motion Streak Trailing Behind Satellite */}
-                  <line 
-                    x1={tailX} 
-                    y1={tailY} 
-                    x2="0" 
-                    y2="0" 
-                    stroke="url(#gpsMotionStreak)" 
-                    strokeWidth="3.5" 
-                    strokeLinecap="round" 
-                  />
-                  <circle r="7" fill="#0284c7" stroke="#ffffff" strokeWidth="1.4" />
-                  {/* Solar Wings */}
-                  <rect x="-16" y="-3.5" width="8" height="7" rx="1" fill="#38bdf8" stroke="#ffffff" strokeWidth="0.6" />
-                  <rect x="8" y="-3.5" width="8" height="7" rx="1" fill="#38bdf8" stroke="#ffffff" strokeWidth="0.6" />
-                  
-                  <text x="0" y="-12" fill="#bae6fd" fontSize="8.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    🇺🇸 GPS-18 (MEO)
-                  </text>
-                  <text x="0" y="18" fill="#38bdf8" fontSize="7" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
-                    FLYOVER • ~3.87 km/s
-                  </text>
-                </g>
+                {gpsOpacity > 0 && (
+                  <g 
+                    transform={`translate(${gpsX}, ${gpsY})`}
+                    opacity={gpsOpacity}
+                    style={{ transition: 'opacity 0.2s ease-out' }}
+                  >
+                    {/* Motion Streak Trailing Behind Satellite (only visible in foreground) */}
+                    {gpsOpacity > 0.4 && (
+                      <line 
+                        x1={tailX} 
+                        y1={tailY} 
+                        x2="0" 
+                        y2="0" 
+                        stroke="url(#gpsMotionStreak)" 
+                        strokeWidth="3.5" 
+                        strokeLinecap="round" 
+                      />
+                    )}
+                    <circle 
+                      r="7" 
+                      fill={isOcculted ? '#0f172a' : '#0284c7'} 
+                      stroke={isOcculted ? '#64748b' : '#ffffff'} 
+                      strokeWidth="1.4" 
+                      strokeDasharray={isOcculted ? '2 2' : 'none'} 
+                    />
+                    {/* Solar Wings */}
+                    <rect x="-16" y="-3.5" width="8" height="7" rx="1" fill={isOcculted ? '#334155' : '#38bdf8'} stroke={isOcculted ? '#64748b' : '#ffffff'} strokeWidth="0.6" />
+                    <rect x="8" y="-3.5" width="8" height="7" rx="1" fill={isOcculted ? '#334155' : '#38bdf8'} stroke={isOcculted ? '#64748b' : '#ffffff'} strokeWidth="0.6" />
+                    
+                    <text x="0" y="-12" fill={isOcculted ? '#94a3b8' : '#bae6fd'} fontSize="8.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                      🇺🇸 GPS-18 (MEO)
+                    </text>
+                    <text x="0" y="18" fill={isOcculted ? '#f59e0b' : '#38bdf8'} fontSize="7" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                      {isOcculted ? 'BEHIND EARTH' : 'FLYOVER • ~3.87 km/s'}
+                    </text>
+                  </g>
+                )}
 
               </svg>
             </div>
@@ -396,12 +443,14 @@ export const LiveDiagnosticHero: React.FC<LiveDiagnosticHeroProps> = ({
                 <span className="text-emerald-400 font-bold">Stationary Zenith Lock</span>
               </div>
 
-              <div className="p-2 rounded-xl bg-sky-500/10 border border-sky-500/25 flex items-center justify-between">
+              <div className={`p-2 rounded-xl border flex items-center justify-between transition-colors ${isOcculted ? 'bg-slate-900/60 border-slate-700/60' : 'bg-sky-500/10 border-sky-500/25'}`}>
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0 animate-pulse"></span>
-                  <span className="font-bold text-sky-400">🇺🇸 GPS (20,200 km)</span>
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${isOcculted ? 'bg-slate-500' : 'bg-sky-400 animate-pulse'}`}></span>
+                  <span className={`font-bold ${isOcculted ? 'text-slate-400' : 'text-sky-400'}`}>🇺🇸 GPS (20,200 km)</span>
                 </div>
-                <span className="text-amber-400 font-bold">Fast Flyover (Sets in ~3h)</span>
+                <span className={`font-bold text-[10.5px] ${isOcculted ? 'text-amber-400' : 'text-sky-300'}`}>
+                  {isOcculted ? 'Occulted (Behind Earth)' : 'Fast Flyover (Sets in ~3h)'}
+                </span>
               </div>
             </div>
 
